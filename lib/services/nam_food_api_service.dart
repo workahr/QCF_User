@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
+import '../pages/HomeScreen/homescreen_json.dart';
 import '../pages/json_data/store_page_json.dart';
 
 class NamFoodApiService {
@@ -1389,8 +1390,6 @@ class NamFoodApiService {
     }
   }
 
-
-
   // driverlist
   // Future getdriverList() async {
   //   try {
@@ -1413,11 +1412,25 @@ class NamFoodApiService {
     try {
       // Create a list of DriversList with hardcoded data
 
-     var result = await getStoreListJsonData();
+      var result = await getStoreListJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors
       throw Exception('Failed to retrieve driver data: $e');
+    }
+  }
+
+  //ecomAddtoCart
+
+  Future getaddtocart() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getAddtoCartPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
     }
   }
 }

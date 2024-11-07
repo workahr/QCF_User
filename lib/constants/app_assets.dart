@@ -72,8 +72,9 @@ class AppAssets {
   static const String bannerimg = 'assets/images/bannerpaneer_masala.png';
   static const String offerimg = 'assets/images/Vector.png';
   static const String nonveg_icon = 'assets/images/nonVeg_icon.png';
-
-
+  static const String ChefHat = 'assets/images/ChefHat.png';
+  static const String Home = 'assets/images/Home.png';
+  static const String UserRounded = 'assets/images/UserRounded.png';
 
   // cart Image
   static const String homeicon = 'assets/images/orderpreview_homeicon.png';
@@ -84,6 +85,4 @@ class AppAssets {
   static const String storeBiriyaniImg = 'assets/images/store_biriyani.png';
   static const String storeKababImg = 'assets/images/store_kabab_img.png';
   static const String noteBookImg = 'assets/images/Notebook.png';
-
-
 }

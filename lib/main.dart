@@ -1,25 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
-
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'controllers/base_controller.dart';
-
-
 import 'package:flutter/material.dart';
 import 'constants/app_localizations.dart';
 import 'constants/constants.dart';
 import 'package:upgrader/upgrader.dart';
-
+import 'pages/HomeScreen/home_screen.dart';
 import 'pages/auth/login_page.dart';
-import 'pages/home/home_page.dart';
 import 'pages/landing_page.dart';
+import 'pages/maincontainer.dart';
 
 // import 'package:flutter/services.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +32,6 @@ class MyApp extends StatefulWidget with WidgetsBindingObserver {
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   BaseController baseCtrl = Get.put(BaseController());
-  
 
   _MyAppState() {
     print('baseCtrl ${baseCtrl.isDarkModeEnabled.value}');
@@ -103,7 +96,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     }
   }
 
- @override
+  @override
   Widget build(BuildContext context) {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
@@ -116,8 +109,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           '/': (context) => LandingPage(),
           '/login': (context) => UpgradeAlert(
                 upgrader: Upgrader(
-                   showIgnore: false,
-                   showLater: false,
+                  showIgnore: false,
+                  showLater: false,
                   durationUntilAlertAgain: const Duration(seconds: 1),
                 ),
                 child: LoginPage(),
@@ -125,11 +118,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ),
           '/home': (context) => UpgradeAlert(
                 upgrader: Upgrader(
-                   showIgnore: false,
-                   showLater: false,
+                  showIgnore: false,
+                  showLater: false,
                   durationUntilAlertAgain: const Duration(seconds: 1),
                 ),
-                child: HomePage(),
+                child: MainContainer(),
               ),
         },
       ),
