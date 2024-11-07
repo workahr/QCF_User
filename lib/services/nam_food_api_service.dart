@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
+import '../pages/json_data/store_page_json.dart';
 
 class NamFoodApiService {
   static String liveApiPath = AppConstants.apiBaseUrl;
@@ -1385,6 +1386,38 @@ class NamFoodApiService {
     } catch (e) {
       print('catcherror $e');
       return e;
+    }
+  }
+
+
+
+  // driverlist
+  // Future getdriverList() async {
+  //   try {
+  //     final url = Uri.parse('${liveApiPath}v1/user_details/getalluser_details');
+  //     final response = await client.get(
+  //       url,
+  //       headers: headerData,
+  //     );
+  //     if (response.statusCode == 200) {
+  //       return response.body;
+  //     } else {
+  //       return response;
+  //     }
+  //   } catch (e) {
+  //     throw Exception('Failed to retrieve driver data: $e');
+  //   }
+  // }
+
+  Future getstoreList() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+     var result = await getStoreListJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve driver data: $e');
     }
   }
 }

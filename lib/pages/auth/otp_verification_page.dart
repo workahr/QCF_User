@@ -8,6 +8,7 @@ import '../../constants/app_colors.dart';
 import '../../services/comFuncService.dart';
 import '../../widgets/sub_heading_widget.dart';
 import '../HomeScreen/home_screen.dart';
+import '../cart/cart_page.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   final String? phoneNumber;
@@ -279,7 +280,7 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => CartPage(),
                         ),
                       );
 
