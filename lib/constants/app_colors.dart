@@ -82,34 +82,24 @@ class AppColors {
   static const Color lightGreen = Color(0xFFE1FFE3);
 
   static const Color darkGreen = Color(0xFF196B23);
-   static const Color darkBlue = Color(0xFF0E58D4);
+  static const Color darkBlue = Color(0xFF0E58D4);
 
-   static const Color lightBlue =  Color(0xFFCBDFF7);
-   static const Color lightYellow =  Color(0xFFF5F5DC);
+  static const Color lightBlue = Color(0xFFCBDFF7);
+  static const Color lightYellow = Color(0xFFF5F5DC);
 
- static const Color lightGreen1 =  Color(0xFF5DCE6A);
+  static const Color lightGreen1 = Color(0xFF5DCE6A);
 
- static const Color grey1 =  Color(0xFFF1F0F5);
-   static const Color darkGrey = Color(0xFF696A6A);
+  static const Color grey1 = Color(0xFFF1F0F5);
+  static const Color darkGrey = Color(0xFF696A6A);
 
-   static const Color gold = Color(0xFFFCB019);
-   static const Color black = Color(0xFF2A2A2A);
-   static const Color shadowBlack = Color(0xFF6E6E6E);
+  static const Color gold = Color(0xFFFCB019);
+  static const Color black = Color(0xFF2A2A2A);
+  static const Color shadowBlack = Color(0xFF6E6E6E);
 
-
-   static const Color red = Color(0xFFE23744);
-
-   
-   
-
-
-
-
-   
-
-
-
-
+  static const Color red = Color(0xFFE23744);
+  static const Color lightred = Color(0xFFFBEDEE);
+  static const Color blue = Color(0xFF2F64FE);
+  static const Color bluetone = Color(0xFF91A0B8);
 
   Color loadingGrey = Colors.grey[300]!;
   Color loadingGrey2 = Colors.grey[100]!;

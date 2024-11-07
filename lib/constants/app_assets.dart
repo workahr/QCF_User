@@ -85,4 +85,17 @@ class AppAssets {
   static const String storeBiriyaniImg = 'assets/images/store_biriyani.png';
   static const String storeKababImg = 'assets/images/store_kabab_img.png';
   static const String noteBookImg = 'assets/images/Notebook.png';
+  static const String shoopingbag = 'images/shopping-bag.png';
+
+  static const String vector = 'images/Vector.png';
+  static const String gpay = 'images/google-pay-icon.png';
+  static const String phonepay = 'images/phonepay-icon.png';
+  static const String upiicon = 'images/upi-icon.png';
+  static const String card = 'images/Card.png';
+
+  static const String profileorderhistroy = 'images/profile_orderhistory.png';
+  static const String profileaddress = 'images/profile_address.png';
+  static const String profilepayment = 'images/profile_payment.png';
+  static const String profilesettings = 'images/profile_setting.png';
+  static const String genderal = 'images/genderal.png';
 }
