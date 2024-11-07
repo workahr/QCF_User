@@ -69,4 +69,7 @@ class AppAssets {
 
   static const String pannerimg = 'assets/images/paneer_butter_masala.png';
   static const String foodimg = 'assets/images/foodimg.png';
+  static const String bannerimg = 'assets/images/bannerpaneer_masala.png';
+  static const String offerimg = 'assets/images/Vector.png';
+  static const String nonveg_icon = 'assets/images/nonVeg_icon.png';
 }
