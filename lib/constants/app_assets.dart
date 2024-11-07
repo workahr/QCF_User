@@ -64,4 +64,9 @@ class AppAssets {
   static const String arrows = 'assets/images/Streamline.png';
   static const String reportfile = 'assets/images/reportfile_icon.png';
   static const String profileimg = 'assets/images/profileimg.png';
+
+  // QCF IMAGE
+
+  static const String pannerimg = 'assets/images/paneer_butter_masala.png';
+  static const String foodimg = 'assets/images/foodimg.png';
 }

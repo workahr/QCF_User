@@ -8,9 +8,7 @@ import '../../constants/app_assets.dart';
 import '../../services/comFuncService.dart';
 import '../../widgets/custom_text_field.dart';
 import 'auth_validations.dart';
-
-
-
+import 'otp_verification_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,14 +22,10 @@ class _LoginPageState extends State<LoginPage> {
   AuthValidation authValidation = AuthValidation();
   final NamFoodApiService apiService = NamFoodApiService();
 
-
-
-
   // Future login() async {
   //   try {
   //      showInSnackBar(context, 'Processing...');
-      
-    
+
   //     if (_phoneController.text != "") {
   //       Map<String, dynamic> postData = {
   //         'mobile': _phoneController.text,
@@ -41,7 +35,6 @@ class _LoginPageState extends State<LoginPage> {
   //       LoginOtpModel response = loginOtpModelFromJson(result);
 
   //       closeSnackBar(context: context);
-
 
   //       if (response.status.toString() == 'SUCCESS') {
   //         setState(() {
@@ -55,20 +48,17 @@ class _LoginPageState extends State<LoginPage> {
   //                         ),
   //                       );
   //         });
-        
-  //         // final prefs = await SharedPreferences.getInstance();
-          
-          
-  //         // //prefs.setString('fullname', response.fullname ?? '');
 
-    
+  //         // final prefs = await SharedPreferences.getInstance();
+
+  //         // //prefs.setString('fullname', response.fullname ?? '');
 
   //         //   if(response.authToken != null){
   //         //     Navigator.pushNamed(context, '/');
   //         //     prefs.setString('auth_token', response.authToken ?? '');
   //         //     prefs.setBool('isLoggedin', true);
   //         //   }
-          
+
   //       } else {
   //         showInSnackBar(context, response.message.toString());
   //       }
@@ -89,14 +79,14 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Logo and header section
-           SizedBox(height: 15.0),
-                  Image.asset(
-                  AppAssets.logo,
-                  width: double.infinity,
-                 // height: 280.0,
-                  fit: BoxFit.fill,
-                ),
-                  //const SizedBox(height: 200.0),
+            SizedBox(height: 15.0),
+            Image.asset(
+              AppAssets.logo,
+              width: double.infinity,
+              // height: 280.0,
+              fit: BoxFit.fill,
+            ),
+            //const SizedBox(height: 200.0),
 
             Padding(
               padding:
@@ -120,32 +110,32 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 10.0),
-                 CustomeTextField(
-                        labelText: 'Mobile Number',
-                        control: _phoneController,
-                        validator: authValidation
-                            .errValidateMobileNo(_phoneController.text),
-                        width: MediaQuery.of(context).size.width / 1.1,
-                        type: const TextInputType.numberWithOptions(),
-                        inputFormaters: [
-                          FilteringTextInputFormatter.allow(
-                              RegExp(r'^-?(\d+)?\.?\d{0,11}'))
-                        ],
-                      ),
+                  CustomeTextField(
+                    labelText: 'Mobile Number',
+                    control: _phoneController,
+                    validator: authValidation
+                        .errValidateMobileNo(_phoneController.text),
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    type: const TextInputType.numberWithOptions(),
+                    inputFormaters: [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^-?(\d+)?\.?\d{0,11}'))
+                    ],
+                  ),
                   const SizedBox(height: 20.0),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                       //   Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => OtpVerificationPage(
-                        //       phoneNumber: _phoneController.text,
-                        //     ),
-                        //   ),
-                        // );
-                       //login();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OtpVerificationPage(
+                              phoneNumber: _phoneController.text,
+                            ),
+                          ),
+                        );
+                        //login();
                         print(
                             'Get OTP tapped with number: ${_phoneController.text}');
                       },
@@ -158,7 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: const Text(
                         'Get OTP',
-                        style: TextStyle(fontSize: 16.0, color: AppColors.light),
+                        style:
+                            TextStyle(fontSize: 16.0, color: AppColors.light),
                       ),
                     ),
                   ),
