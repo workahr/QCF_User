@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/app_assets.dart';
 import 'HomeScreen/home_screen.dart';
 import 'cart/cart_page.dart';
+import 'order/myorder_page.dart';
 import 'store/store_page.dart';
 
 class MainContainer extends StatefulWidget {
@@ -22,7 +23,7 @@ class _MainContainerState extends State<MainContainer>
   final List pageId = [1, 5, 8, 12, 15];
   static List<Widget> pageOptions = <Widget>[
     HomeScreen(),
-    CartPage(),
+    MyorderPage(),
     StorePage(),
   ];
 
