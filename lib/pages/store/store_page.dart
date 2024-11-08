@@ -38,11 +38,11 @@ class _StorePageState extends State<StorePage> {
             children: [
               Container(
                 padding: const EdgeInsets.all(16.0),
-                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15.0),
-                    border: Border.all(color: Colors.grey.shade300),
-                  ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15.0),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -50,91 +50,84 @@ class _StorePageState extends State<StorePage> {
                       children: [
                         Expanded(
                           child: HeadingWidget(
-                           title:  'Grill Chicken Arabian Restaurant',
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                            
+                            title: 'Grill Chicken Arabian Restaurant',
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Column(
                           children: [
-                             Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 4.0,
-                            horizontal: 8.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.red,
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: AppColors.light,
-                                size: 16,
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 4.0,
+                                horizontal: 8.0,
                               ),
-                              SizedBox(width: 4),
-                              Text(
-                                '4.5',
-                                style: TextStyle(
-                                  color: AppColors.light,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              decoration: BoxDecoration(
+                                color: AppColors.red,
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
-                            ],
-                          ),
-                        ),
-                        
-                        SizedBox(height: 5.0,),
-                        
-                       SubHeadingWidget(
-                         title:  '252K Rating',
-                        fontSize: 14,
-                        color: AppColors.red,
-                    ),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: AppColors.light,
+                                    size: 16,
+                                  ),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    '4.5',
+                                    style: TextStyle(
+                                      color: AppColors.light,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 5.0,
+                            ),
+                            SubHeadingWidget(
+                              title: '252K Rating',
+                              fontSize: 14.0,
+                              color: AppColors.red,
+                            ),
                           ],
-
                         )
-                       
                       ],
                     ),
                     SizedBox(height: 4),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                          SubHeadingWidget(
-                         title:  '2.5km • 10mins',
-                        fontSize: 14,
-                        color: AppColors.black,
-                    ),
-
-
-
+                        SubHeadingWidget(
+                          title: '2.5km • 10mins',
+                          fontSize: 14.0,
+                          color: AppColors.black,
+                        ),
                       ],
                     ),
-                  
                     SizedBox(height: 4),
-                     SubHeadingWidget(
-                        title:   'South Indian Foods',
-                        fontSize: 14,
-                        color: AppColors.grey,
+                    SubHeadingWidget(
+                      title: 'South Indian Foods',
+                      fontSize: 14.0,
+                      color: AppColors.grey,
                     ),
                     Divider(color: Colors.grey[300]),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                       decoration: BoxDecoration(
                         color: Colors.red[50],
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Row(
                         children: [
-                         Image.asset(
-                      AppAssets.offerimg,
-                      height: 25,
-                      width: 25,
-                    ),
+                          Image.asset(
+                            AppAssets.offerimg,
+                            height: 25,
+                            width: 25,
+                          ),
                           SizedBox(width: 8),
                           Text(
                             '40% Off • Upto ₹90',
@@ -152,14 +145,17 @@ class _StorePageState extends State<StorePage> {
               SizedBox(height: 16),
 
               CustomeTextField(
-                  width: MediaQuery.of(context).size.width - 10.0,
-                 hint: 'Find your dish',
-                  prefixIcon: Icon(Icons.search, color: AppColors.red,),
-               labelColor: AppColors.primary,
-                    // borderColor: AppColors.primary2,
-                    focusBorderColor: AppColors.primary,
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    borderColor: AppColors.lightGrey3,
+                width: MediaQuery.of(context).size.width - 10.0,
+                hint: 'Find your dish',
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: AppColors.red,
+                ),
+                labelColor: AppColors.primary,
+                // borderColor: AppColors.primary2,
+                focusBorderColor: AppColors.primary,
+                borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                borderColor: AppColors.lightGrey3,
               ),
               // TextField(
               //   decoration: InputDecoration(
@@ -174,13 +170,18 @@ class _StorePageState extends State<StorePage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HeadingWidget(title: 'Briyani', fontSize: 20.0, fontWeight: FontWeight.bold,),
+                  HeadingWidget(
+                    title: 'Briyani',
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   FoodItemWidget(
                     name: 'Chicken Biryani',
                     rating: 4.5,
                     price: 150.0,
                     discountPrice: 100.0,
-                    imageUrl: AppAssets.storeBiriyaniImg, // Add your image path here
+                    imageUrl:
+                        AppAssets.storeBiriyaniImg, // Add your image path here
                     onAdd: addItemToCart,
                   ),
                   Divider(height: 1, thickness: 0.5, color: AppColors.grey),
@@ -189,17 +190,23 @@ class _StorePageState extends State<StorePage> {
                     rating: 4.5,
                     price: 200.0,
                     discountPrice: 150.0,
-                    imageUrl: AppAssets.storeKababImg, // Add your image path here
+                    imageUrl:
+                        AppAssets.storeKababImg, // Add your image path here
                     onAdd: addItemToCart,
                   ),
                   Divider(height: 1, thickness: 0.5, color: AppColors.grey),
-                  HeadingWidget(title: 'Non Veg Starters',fontSize: 20.0, fontWeight: FontWeight.bold,),
+                  HeadingWidget(
+                    title: 'Non Veg Starters',
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                   FoodItemWidget(
                     name: 'Chicken Kebab',
                     rating: 4.5,
                     price: 200.0,
                     discountPrice: 150.0,
-                    imageUrl: AppAssets.storeKababImg, // Add your image path here
+                    imageUrl:
+                        AppAssets.storeKababImg, // Add your image path here
                     onAdd: addItemToCart,
                   ),
                   Divider(height: 1, thickness: 0.5, color: AppColors.grey),
@@ -208,7 +215,8 @@ class _StorePageState extends State<StorePage> {
                     rating: 4.5,
                     price: 150.0,
                     discountPrice: 100.0,
-                    imageUrl: AppAssets.storeBiriyaniImg, // Add your image path here
+                    imageUrl:
+                        AppAssets.storeBiriyaniImg, // Add your image path here
                     onAdd: addItemToCart,
                   ),
                 ],
@@ -217,7 +225,6 @@ class _StorePageState extends State<StorePage> {
           ),
         ),
       ),
-      
       bottomNavigationBar: BottomAppBar(
         height: 100.0,
         elevation: 0,
@@ -270,7 +277,7 @@ class _StorePageState extends State<StorePage> {
         ),
       ),
       floatingActionButton: Container(
-          width: 80,  // Adjust size as needed
+          width: 80, // Adjust size as needed
           height: 80, // Adjust size as needed
           decoration: BoxDecoration(
             color: AppColors.black, // Background color of the container
@@ -281,16 +288,16 @@ class _StorePageState extends State<StorePage> {
             children: [
               Image.asset(
                 AppAssets.noteBookImg,
-                  width: 25,
-                  height: 25,
-                  color: AppColors.light,),
-
-          HeadingWidget(title: "Menu",color: Colors.white,)
-
+                width: 25,
+                height: 25,
+                color: AppColors.light,
+              ),
+              HeadingWidget(
+                title: "Menu",
+                color: Colors.white,
+              )
             ],
-          )
-        
-        ),
+          )),
     );
   }
 }
@@ -337,7 +344,7 @@ class FoodItemWidget extends StatelessWidget {
         children: [
           // Use Stack for image and button overlay
           Stack(
-             clipBehavior: Clip.none,
+            clipBehavior: Clip.none,
             children: [
               // Food item image
               ClipRRect(
@@ -351,30 +358,33 @@ class FoodItemWidget extends StatelessWidget {
               ),
               // Positioned Add button at the bottom
               Positioned(
-                 bottom: -17,
-                left: 8,
-                right: 8,
-                child: 
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.red,),
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: AppColors.light
-                  ),
-                  child: 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add, color: AppColors.red,),
-
-                      SizedBox(width: 5.0,),
-
-                      HeadingWidget(title: "Add", color: AppColors.red,)
-                    ],
-                  ),
-                )
-              
-              ),
+                  bottom: -17,
+                  left: 8,
+                  right: 8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.red,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: AppColors.light),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add,
+                          color: AppColors.red,
+                        ),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        HeadingWidget(
+                          title: "Add",
+                          color: AppColors.red,
+                        )
+                      ],
+                    ),
+                  )),
             ],
           ),
           SizedBox(width: 16),
@@ -383,34 +393,42 @@ class FoodItemWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Row(
                   children: [
                     Image.asset(
-                 AppAssets.nonveg_icon,
-                  width: 20,
-                  height: 20,
-                ),
-                SizedBox(width: 3.0,),
-                HeadingWidget(title: 'Non-Veg',vMargin: 1.0, fontSize: 13.0,),
+                      AppAssets.nonveg_icon,
+                      width: 20,
+                      height: 20,
+                    ),
+                    SizedBox(
+                      width: 3.0,
+                    ),
+                    HeadingWidget(
+                      title: 'Non-Veg',
+                      vMargin: 1.0,
+                      fontSize: 13.0,
+                    ),
                   ],
-
                 ),
                 HeadingWidget(
                   title: name,
-                  fontSize: 16,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                   vMargin: 1.0,
                 ),
                 Row(
                   children: [
                     Icon(Icons.star, color: Colors.red, size: 16),
-                    SubHeadingWidget(title: '$rating (125)', vMargin: 1.0,),
+                    SubHeadingWidget(
+                      title: '$rating (125)',
+                      vMargin: 1.0,
+                    ),
                   ],
                 ),
                 HeadingWidget(
                   title: '₹$discountPrice',
-                  fontWeight: FontWeight.bold,vMargin: 1.0,
+                  fontWeight: FontWeight.bold,
+                  vMargin: 1.0,
                 ),
                 Text(
                   '₹$price',
@@ -422,7 +440,8 @@ class FoodItemWidget extends StatelessWidget {
                 ),
                 SubHeadingWidget(
                   title: 'Lorem ipsum dolor sit amet',
-                  color: AppColors.black,vMargin: 1.0,
+                  color: AppColors.black,
+                  vMargin: 1.0,
                 ),
               ],
             ),
@@ -432,4 +451,3 @@ class FoodItemWidget extends StatelessWidget {
     );
   }
 }
-

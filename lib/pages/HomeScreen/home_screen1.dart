@@ -462,7 +462,6 @@ class _HomeScreen1State extends State<HomeScreen1> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Image and Restaurant Info
                         Row(
                           children: [
                             ClipRRect(
@@ -474,7 +473,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                 fit: BoxFit.fill,
                               ),
                             ),
-                            SizedBox(width: 10),
+                            SizedBox(width: 5),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -559,9 +558,6 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                 SizedBox(width: 8),
                               ],
                             ),
-                            // SizedBox(
-                            //   width: 10,
-                            // ),
                             Container(
                               width: 30,
                               height: 30,
