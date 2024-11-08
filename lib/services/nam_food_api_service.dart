@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
-import '../pages/HomeScreen/homescreen_json.dart';
+import '../pages/json_data/homescreen_json.dart';
+import '../pages/json_data/home_carousel_json.dart';
+import '../pages/json_data/myorder_page_json.dart';
 import '../pages/json_data/store_page_json.dart';
 
 class NamFoodApiService {
@@ -1422,7 +1424,7 @@ class NamFoodApiService {
 
   //ecomAddtoCart
 
-  Future getaddtocart() async {
+  Future getdashbordlist() async {
     try {
       // Create a list of DriversList with hardcoded data
 
@@ -1431,6 +1433,32 @@ class NamFoodApiService {
     } catch (e) {
       // Handle any errors
       throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+
+  //Homepage_Carousel
+
+  Future gethomecarousel() async {
+    try {
+      var result = await getHomeCarouselJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve Carousel: $e');
+    }
+  }
+
+  //nam_myorderpage
+
+  Future getmyorderpage() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getMyOrderJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve MyOrder: $e');
     }
   }
 }
