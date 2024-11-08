@@ -69,12 +69,14 @@ class AppAssets {
 
   static const String pannerimg = 'assets/images/paneer_butter_masala.png';
   static const String foodimg = 'assets/images/foodimg.png';
-  static const String bannerimg = 'assets/images/bannerpaneer_masala.png';
+  static const String bannerimg = 'assets/images/bannerpaneer_masala1.png';
   static const String offerimg = 'assets/images/Vector.png';
   static const String nonveg_icon = 'assets/images/nonVeg_icon.png';
   static const String ChefHat = 'assets/images/ChefHat.png';
   static const String Home = 'assets/images/Home.png';
   static const String UserRounded = 'assets/images/UserRounded.png';
+  static const String chickenchill = 'assets/images/chicken-chili-top.png';
+  static const String veg_icon = 'assets/images/veg_icon.png';
 
   // cart Image
   static const String homeicon = 'assets/images/orderpreview_homeicon.png';

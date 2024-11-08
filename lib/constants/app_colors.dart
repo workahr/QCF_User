@@ -100,6 +100,7 @@ class AppColors {
   static const Color lightred = Color(0xFFFBEDEE);
   static const Color blue = Color(0xFF2F64FE);
   static const Color bluetone = Color(0xFF91A0B8);
+  static const Color n_black = Color(0xFF000000);
 
   Color loadingGrey = Colors.grey[300]!;
   Color loadingGrey2 = Colors.grey[100]!;

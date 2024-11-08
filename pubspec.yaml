@@ -46,6 +46,8 @@ dependencies:
   upgrader: ^8.1.0
   dotted_border: ^2.1.0
   dotted_line: ^3.2.3
+  carousel_slider: ^5.0.0
+  dots_indicator: ^3.0.0
  
 
 dev_dependencies:

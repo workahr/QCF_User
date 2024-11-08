@@ -25,7 +25,7 @@ class HeadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: vMargin ?? 8.0),
+      margin: EdgeInsets.symmetric(vertical: vMargin ?? 0),
       child: Text(
         title.toString(),
         maxLines: maxLines,
