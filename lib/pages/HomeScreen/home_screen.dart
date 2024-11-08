@@ -258,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(21, 0, 0, 12),
+                    padding: const EdgeInsets.fromLTRB(21, 0, 0, 5),
                     child: HeadingWidget(
                       title: "Restaurant Explore",
                       fontSize: 17.0,
