@@ -34,8 +34,7 @@ class CustomeTextField extends StatelessWidget {
       this.borderRadius,
       this.boxColor,
       this.boxRadius,
-      this.hintColor
-      })
+      this.hintColor})
       : super(key: key);
 
   final String? hint;
@@ -73,11 +72,11 @@ class CustomeTextField extends StatelessWidget {
     return Container(
       margin: margin ?? const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
       width: width ?? 201,
-       height: height ?? null,
-         decoration: BoxDecoration(
-            color: boxColor ?? AppColors.light,
-            borderRadius: boxRadius ?? null,
-          ),
+      height: height ?? null,
+      decoration: BoxDecoration(
+        color: boxColor ?? AppColors.light,
+        borderRadius: boxRadius ?? null,
+      ),
       child: Row(
         children: [
           Expanded(
@@ -86,19 +85,26 @@ class CustomeTextField extends StatelessWidget {
               initialValue: initialValue,
               // textAlign: textAlign!,
               // textAlign: textAlign || type == null ? TextAlign.start : TextAlign.end,
-              textAlign:
-                  inputType == 'number' ? textAlign == null ?  TextAlign.end : TextAlign.start : textAlign ?? TextAlign.start,
+              textAlign: inputType == 'number'
+                  ? textAlign == null
+                      ? TextAlign.end
+                      : TextAlign.start
+                  : textAlign ?? TextAlign.start,
               controller: control,
               obscureText: obscureText == true
                   ? obscureText
                       ? true
                       : false
                   : false,
-              keyboardType: inputType =='number'? const TextInputType.numberWithOptions() :type,
-              inputFormatters: inputType =='number'?  [
-                            FilteringTextInputFormatter.allow(
-                                RegExp(r'^-?(\d+)?\.?\d{0,11}'))
-                          ] : inputFormaters,
+              keyboardType: inputType == 'number'
+                  ? const TextInputType.numberWithOptions()
+                  : type,
+              inputFormatters: inputType == 'number'
+                  ? [
+                      FilteringTextInputFormatter.allow(
+                          RegExp(r'^-?(\d+)?\.?\d{0,11}'))
+                    ]
+                  : inputFormaters,
               maxLines: lines ?? 1,
               validator: validator,
               readOnly: readOnly ?? false,
@@ -111,12 +117,12 @@ class CustomeTextField extends StatelessWidget {
                 prefixIcon: prefixIcon,
                 suffixIcon: suffixIcon,
                 iconColor: AppColors.primary,
-                floatingLabelStyle:
-                    TextStyle(fontSize: 14.0, color:  labelColor ??AppColors.primary),
-                hintStyle:
-                    TextStyle(fontSize: 14.0, color: hintColor ?? AppColors.lightGrey),
-                labelStyle:
-                    TextStyle(fontSize: 14.0, color: hintColor ?? AppColors.lightGrey),
+                floatingLabelStyle: TextStyle(
+                    fontSize: 14.0, color: labelColor ?? AppColors.red),
+                hintStyle: TextStyle(
+                    fontSize: 14.0, color: hintColor ?? AppColors.lightGrey),
+                labelStyle: TextStyle(
+                    fontSize: 14.0, color: hintColor ?? AppColors.lightGrey),
                 // labelStyle: TextStyle(
                 //     fontSize: 16, color: const Color(0xff6A707C).withOpacity(0.48)),
                 // contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -124,20 +130,23 @@ class CustomeTextField extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
                 border: OutlineInputBorder(
-                  borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
-                  borderSide:
-                      BorderSide(width: 1.5, color:   borderColor ?? AppColors.lightGrey),
+                  borderRadius:
+                      borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
+                  borderSide: BorderSide(
+                      width: 1.5, color: borderColor ?? AppColors.lightGrey),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
-                  borderSide:
-                      BorderSide(width: 1.5, color:   borderColor ?? AppColors.lightGrey),
+                  borderRadius:
+                      borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
+                  borderSide: BorderSide(
+                      width: 1.5, color: borderColor ?? AppColors.lightGrey),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
-                  borderSide: BorderSide(width: 1.5, color:   focusBorderColor ?? AppColors.primary),
+                  borderRadius:
+                      borderRadius ?? BorderRadius.all(Radius.circular(12.0)),
+                  borderSide: BorderSide(
+                      width: 1.5, color: focusBorderColor ?? AppColors.red),
                 ),
-                  
               ),
               // )
             ),
