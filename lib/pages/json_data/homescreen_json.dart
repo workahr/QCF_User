@@ -1,4 +1,4 @@
-Future getAddtoCartPageJsonData() async {
+Future gethomedashboardPageJsonData() async {
   var result = {
     "status": "SUCCESS",
     "list": [

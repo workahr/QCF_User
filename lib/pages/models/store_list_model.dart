@@ -1,31 +1,33 @@
 // To parse this JSON data, do
 //
-//     final driverListData = driverListDataFromJson(jsonString);
+//     final storedishlistmodel = storedishlistmodelFromJson(jsonString);
 
 import 'dart:convert';
 
-StoreListData storeListDataFromJson(String str) =>
-    StoreListData.fromJson(json.decode(str));
+Storedishlistmodel storedishlistmodelFromJson(String str) =>
+    Storedishlistmodel.fromJson(json.decode(str));
 
-String storeListDataToJson(StoreListData data) => json.encode(data.toJson());
+String storedishlistmodelToJson(Storedishlistmodel data) =>
+    json.encode(data.toJson());
 
-class StoreListData {
+class Storedishlistmodel {
   String status;
-  List<StoreList> list;
+  List<StoreDish> list;
   String code;
   String message;
 
-  StoreListData({
+  Storedishlistmodel({
     required this.status,
     required this.list,
     required this.code,
     required this.message,
   });
 
-  factory StoreListData.fromJson(Map<String, dynamic> json) => StoreListData(
+  factory Storedishlistmodel.fromJson(Map<String, dynamic> json) =>
+      Storedishlistmodel(
         status: json["status"],
-        list: List<StoreList>.from(
-            json["list"].map((x) => StoreList.fromJson(x))),
+        list: List<StoreDish>.from(
+            json["list"].map((x) => StoreDish.fromJson(x))),
         code: json["code"],
         message: json["message"],
       );
@@ -38,93 +40,78 @@ class StoreListData {
       };
 }
 
-class StoreList {
+class StoreDish {
   int id;
-  String username;
-  String password;
-  String fullname;
-  String email;
-  String mobile;
-  int role;
-  String? regOtp;
+  String? type;
+  String category;
+  String? dishname;
+  String? rating;
+  String? reviewpersons;
+  String? actualprice;
+  String? discountprice;
+  String? description;
+  String? dishimage;
   int status;
   int active;
   int createdBy;
-  DateTime createdDate;
-  int? updatedBy;
-  DateTime? updatedDate;
-  int userId;
-  int vehicleId;
-  String licenseNumber;
-  DateTime licenseExpiry;
-  String address;
+  String? createdDate;
+  int updatedBy;
+  String? updatedDate;
 
-  StoreList({
+  StoreDish({
     required this.id,
-    required this.username,
-    required this.password,
-    required this.fullname,
-    required this.email,
-    required this.mobile,
-    required this.role,
-    this.regOtp,
+    this.type,
+    required this.category,
+    this.dishname,
+    this.rating,
+    this.reviewpersons,
+    this.actualprice,
+    this.discountprice,
+    this.description,
+    this.dishimage,
     required this.status,
     required this.active,
     required this.createdBy,
-    required this.createdDate,
-    this.updatedBy,
+    this.createdDate,
+    required this.updatedBy,
     this.updatedDate,
-    required this.userId,
-    required this.vehicleId,
-    required this.licenseNumber,
-    required this.licenseExpiry,
-    required this.address,
   });
 
-  factory StoreList.fromJson(Map<String, dynamic> json) => StoreList(
+  factory StoreDish.fromJson(Map<String, dynamic> json) => StoreDish(
         id: json["id"],
-        username: json["username"],
-        password: json["password"],
-        fullname: json["fullname"],
-        email: json["email"],
-        mobile: json["mobile"],
-        role: json["role"],
-        regOtp: json["reg_otp"],
+        type: json["type"],
+        category: json["category"],
+        dishname: json["dishname"],
+        rating: json["rating"],
+        reviewpersons: json["reviewpersons"],
+        actualprice: json["actualprice"],
+        discountprice: json["discountprice"],
+        description: json["description"],
+        dishimage: json["dishimage"],
         status: json["status"],
         active: json["active"],
         createdBy: json["created_by"],
-        createdDate: DateTime.parse(json["created_date"]),
+        createdDate: json["created_date"],
         updatedBy: json["updated_by"],
-        updatedDate: json["updated_date"] == null
-            ? null
-            : DateTime.parse(json["updated_date"]),
-        userId: json["user_id"],
-        vehicleId: json["vehicle_id"],
-        licenseNumber: json["license_number"],
-        licenseExpiry: DateTime.parse(json["license_expiry"]),
-        address: json["address"],
+        updatedDate: json["updated_date"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "username": username,
-        "password": password,
-        "fullname": fullname,
-        "email": email,
-        "mobile": mobile,
-        "role": role,
-        "reg_otp": regOtp,
+        "type": type,
+        "category": category,
+        "dishname": dishname,
+        "rating": rating,
+        "reviewpersons": reviewpersons,
+        "actualprice": actualprice,
+        "discountprice": discountprice,
+        "description": description,
+        "dishimage": dishimage,
         "status": status,
         "active": active,
         "created_by": createdBy,
-        "created_date": createdDate.toIso8601String(),
+        "created_date": createdDate,
         "updated_by": updatedBy,
-        "updated_date": updatedDate?.toIso8601String(),
-        "user_id": userId,
-        "vehicle_id": vehicleId,
-        "license_number": licenseNumber,
-        "license_expiry":
-            "${licenseExpiry.year.toString().padLeft(4, '0')}-${licenseExpiry.month.toString().padLeft(2, '0')}-${licenseExpiry.day.toString().padLeft(2, '0')}",
-        "address": address,
+        "updated_date": updatedDate,
       };
 }

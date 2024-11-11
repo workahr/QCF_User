@@ -11,6 +11,8 @@ import '../../widgets/heading_widget.dart';
 import '../../widgets/sub_heading_widget.dart';
 
 import '../models/myorder_page_model.dart';
+import '../rating/add_rating_page.dart';
+import 'order_preview_page.dart';
 
 class MyorderPage extends StatefulWidget {
   @override
@@ -467,44 +469,66 @@ class _MyorderPageState extends State<MyorderPage>
                           child: Row(
                             children: [
                               Expanded(
-                                flex: 2,
-                                child: Container(
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: AppColors.n_black, width: 1.5),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Center(
-                                      child: Text(
-                                    'View More',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.n_black,
-                                        fontWeight: FontWeight.bold),
+                                  flex: 2,
+                                  child: Container(
+                                    height: 35,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: AppColors.n_black,
+                                            width: 1.5),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Center(
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    OrderPreviewPage(),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'View More',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: AppColors.n_black,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                    ),
                                   )),
-                                ),
-                              ),
                               SizedBox(
                                 width: 8,
                               ),
                               Expanded(
-                                flex: 2,
-                                child: Container(
-                                  height: 35,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: AppColors.red, width: 1.5),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Center(
-                                      child: Text(
-                                    'Rate your order',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.red,
-                                        fontWeight: FontWeight.bold),
+                                  flex: 2,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => AddRatingPage(),
+                                        ),
+                                      );
+                                    },
+                                    child: Container(
+                                      height: 35,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.red, width: 1.5),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Text(
+                                        'Rate your order',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: AppColors.red,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                    ),
                                   )),
-                                ),
-                              ),
                             ],
                           ),
                         ),

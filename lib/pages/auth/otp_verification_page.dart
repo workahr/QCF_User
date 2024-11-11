@@ -10,6 +10,7 @@ import '../../widgets/sub_heading_widget.dart';
 import '../HomeScreen/home_screen.dart';
 import '../cart/cart_page.dart';
 import '../maincontainer.dart';
+import 'package:pinput/pinput.dart';
 
 class OtpVerificationPage extends StatefulWidget {
   final String? phoneNumber;
@@ -143,22 +144,23 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
     const borderColor = Color.fromRGBO(23, 171, 144, 0.4);
 
-    // final defaultPinTheme = PinTheme(
-    //   width: 56,
-    //   height: 56,
-    //   textStyle: const TextStyle(
-    //     fontSize: 22,
-    //     color: Color.fromRGBO(30, 60, 87, 1),
-    //   ),
-    //   decoration: BoxDecoration(
-    //     borderRadius: BorderRadius.circular(19),
-    //     border: Border.all(color: borderColor),
-    //   ),
-    // );
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 56,
+      textStyle: const TextStyle(
+        fontSize: 22,
+        color: Color.fromRGBO(30, 60, 87, 1),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(19),
+        border: Border.all(color: borderColor),
+      ),
+    );
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          title: Text("Back"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -186,61 +188,59 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                   ],
                 ),
                 const SizedBox(height: 30.0),
-
-                // Pinput(
-                //   length: 6,
-                //   controller: otpCtrl,
-                //   focusNode: otpFocusNode,
-                //   androidSmsAutofillMethod:
-                //       AndroidSmsAutofillMethod.smsUserConsentApi,
-                //   listenForMultipleSmsOnAndroid: true,
-                //   defaultPinTheme: defaultPinTheme,
-                //   separatorBuilder: (index) => const SizedBox(width: 8.0),
-                //   validator: (value) {
-                //     // return value.toString() == orgOtp.toString()
-                //     //     ? null
-                //     //     : 'OTP is incorrect';
-                //   },
-                //   // onClipboardFound: (value) {
-                //   //   debugPrint('onClipboardFound: $value');
-                //   //   pinController.setText(value);
-                //   // },
-                //   hapticFeedbackType: HapticFeedbackType.lightImpact,
-                //   onCompleted: (pin) {
-                //     // debugPrint('onCompleted: $pin');
-                //   },
-                //   onChanged: (value) {
-                //     // debugPrint('onChanged: $value');
-                //   },
-                //   cursor: Column(
-                //     mainAxisAlignment: MainAxisAlignment.end,
-                //     children: [
-                //       Container(
-                //         margin: const EdgeInsets.only(bottom: 9.0),
-                //         width: 22.0,
-                //         height: 1.0,
-                //         color: focusedBorderColor,
-                //       ),
-                //     ],
-                //   ),
-                //   focusedPinTheme: defaultPinTheme.copyWith(
-                //     decoration: defaultPinTheme.decoration!.copyWith(
-                //       borderRadius: BorderRadius.circular(8),
-                //       border: Border.all(color: focusedBorderColor),
-                //     ),
-                //   ),
-                //   submittedPinTheme: defaultPinTheme.copyWith(
-                //     decoration: defaultPinTheme.decoration!.copyWith(
-                //       color: fillColor,
-                //       borderRadius: BorderRadius.circular(19),
-                //       border: Border.all(color: focusedBorderColor),
-                //     ),
-                //   ),
-                //   errorPinTheme: defaultPinTheme.copyBorderWith(
-                //     border: Border.all(color: AppColors.danger),
-                //   ),
-                // ),
-
+                Pinput(
+                  length: 6,
+                  controller: otpCtrl,
+                  focusNode: otpFocusNode,
+                  // androidSmsAutofillMethod:
+                  //     AndroidSmsAutofillMethod.smsUserConsentApi,
+                  // listenForMultipleSmsOnAndroid: true,
+                  defaultPinTheme: defaultPinTheme,
+                  separatorBuilder: (index) => const SizedBox(width: 8.0),
+                  validator: (value) {
+                    // return value.toString() == orgOtp.toString()
+                    //     ? null
+                    //     : 'OTP is incorrect';
+                  },
+                  // onClipboardFound: (value) {
+                  //   debugPrint('onClipboardFound: $value');
+                  //   pinController.setText(value);
+                  // },
+                  hapticFeedbackType: HapticFeedbackType.lightImpact,
+                  onCompleted: (pin) {
+                    // debugPrint('onCompleted: $pin');
+                  },
+                  onChanged: (value) {
+                    // debugPrint('onChanged: $value');
+                  },
+                  cursor: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 9.0),
+                        width: 22.0,
+                        height: 1.0,
+                        color: focusedBorderColor,
+                      ),
+                    ],
+                  ),
+                  focusedPinTheme: defaultPinTheme.copyWith(
+                    decoration: defaultPinTheme.decoration!.copyWith(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: focusedBorderColor),
+                    ),
+                  ),
+                  submittedPinTheme: defaultPinTheme.copyWith(
+                    decoration: defaultPinTheme.decoration!.copyWith(
+                      color: fillColor,
+                      borderRadius: BorderRadius.circular(19),
+                      border: Border.all(color: focusedBorderColor),
+                    ),
+                  ),
+                  errorPinTheme: defaultPinTheme.copyBorderWith(
+                    border: Border.all(color: AppColors.danger),
+                  ),
+                ),
                 const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -263,7 +263,6 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                       ),
                   ],
                 ),
-
                 if (_start != 0)
                   Align(
                     alignment: Alignment.centerRight,
@@ -272,7 +271,6 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                         color: AppColors.danger,
                         vMargin: 2.0),
                   ),
-
                 const SizedBox(height: 20.0),
                 SizedBox(
                   width: double.infinity,

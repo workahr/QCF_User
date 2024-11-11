@@ -4,6 +4,7 @@ import '../constants/app_assets.dart';
 import 'HomeScreen/home_screen.dart';
 import 'cart/cart_page.dart';
 import 'order/myorder_page.dart';
+import 'profile/profile_screen.dart';
 import 'store/store_page.dart';
 
 class MainContainer extends StatefulWidget {
@@ -24,7 +25,7 @@ class _MainContainerState extends State<MainContainer>
   static List<Widget> pageOptions = <Widget>[
     HomeScreen(),
     MyorderPage(),
-    StorePage(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) async {
@@ -97,6 +98,8 @@ class _MainContainerState extends State<MainContainer>
                 AppAssets.Home,
               ),
               label: 'Home',
+
+              //   backgroundColor: Color(0xFFE23744)
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
@@ -116,6 +119,7 @@ class _MainContainerState extends State<MainContainer>
           showUnselectedLabels: true,
           onTap: _onItemTapped,
           type: BottomNavigationBarType.fixed,
+          selectedItemColor: Color(0xFFE23744),
         ),
       ),
     );

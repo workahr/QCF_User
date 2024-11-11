@@ -174,7 +174,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Wrap(
                             children: [
                               HeadingWidget(
-                                  fontSize: 16,
+                                  fontSize: 16.0,
                                   fontWeight: FontWeight.w500,
                                   title:
                                       'No 37 Paranjothi Nagar Thalakoidi, velour Nagar Trichy-620005, Landmark-Andavan collage')
@@ -184,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: 6,
                           ),
                           HeadingWidget(
-                            fontSize: 16,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.w500,
                             title: "Contact : 1234567890",
                           ),

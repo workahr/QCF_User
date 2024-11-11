@@ -74,6 +74,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(height: 10.0),
+                  //  const SizedBox(height: 10.0),
                   CustomeTextField(
                     labelText: 'Mobile Number',
                     control: _phoneController,
@@ -121,8 +124,10 @@ class _LoginPageState extends State<LoginPage> {
                       FilteringTextInputFormatter.allow(
                           RegExp(r'^-?(\d+)?\.?\d{0,11}'))
                     ],
+                    prefixText: '+91 ', // Set +91 as prefixText
                   ),
-                  const SizedBox(height: 20.0),
+
+                  const SizedBox(height: 10.0),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(

@@ -1428,7 +1428,7 @@ class NamFoodApiService {
     try {
       // Create a list of DriversList with hardcoded data
 
-      var result = await getAddtoCartPageJsonData();
+      var result = await gethomedashboardPageJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors
@@ -1459,6 +1459,20 @@ class NamFoodApiService {
     } catch (e) {
       // Handle any errors
       throw Exception('Failed to retrieve MyOrder: $e');
+    }
+  }
+
+  //ecomAddtoCart
+
+  Future getstoredishlist() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getStoreListJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
     }
   }
 }
