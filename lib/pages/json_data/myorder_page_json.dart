@@ -9,9 +9,13 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'On Delivery',
-        "OrderPlacedDate": "January 19th 12:02 AM",
-        "OrderConfirmedDate": "January 19th 12:02 AM",
-        "DeliveryDate": "January 19th 12:02 AM",
+        "Orderdetails": [
+          {
+            "OrderPlacedDate": "January 19th 12:02 AM",
+            "OrderConfirmedDate": "January 19th 12:02 AM",
+            "DeliveryDate": "January 19th 12:02 AM",
+          }
+        ],
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -29,9 +33,13 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'Completed',
-        "OrderPlacedDate": "January 19th 12:02 AM",
-        "OrderConfirmedDate": "January 19th 12:02 AM",
-        "DeliveryDate": "January 19th 12:02 AM",
+        "Orderdetails": [
+          {
+            "OrderPlacedDate": "January 19th 12:02 AM",
+            "OrderConfirmedDate": "January 19th 12:02 AM",
+            "DeliveryDate": "January 19th 12:02 AM",
+          }
+        ],
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -49,9 +57,13 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'Completed',
-        "OrderPlacedDate": "January 19th 12:02 AM",
-        "OrderConfirmedDate": "January 19th 12:02 AM",
-        "DeliveryDate": "January 19th 12:02 AM",
+        "Orderdetails": [
+          {
+            "OrderPlacedDate": "January 19th 12:02 AM",
+            "OrderConfirmedDate": "January 19th 12:02 AM",
+            "DeliveryDate": "January 19th 12:02 AM",
+          }
+        ],
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -68,10 +80,14 @@ Future getMyOrderJsonData() async {
         "id": 4,
         "orderid": "0012345",
         "items": "12",
-        'orderstatus': 'Completed',
-        "OrderPlacedDate": "January 19th 12:02 AM",
-        "OrderConfirmedDate": "January 19th 12:02 AM",
-        "DeliveryDate": "January 19th 12:02 AM",
+        'orderstatus': 'On Delivery',
+        "Orderdetails": [
+          {
+            "OrderPlacedDate": "January 19th 12:02 AM",
+            "OrderConfirmedDate": "January 19th 12:02 AM",
+            "DeliveryDate": "January 19th 12:02 AM",
+          }
+        ],
         "status": 1,
         "active": 1,
         "created_by": 101,
