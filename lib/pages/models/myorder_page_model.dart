@@ -108,9 +108,13 @@ class MyOrders {
         "orderid": orderid,
         "items": items,
         "orderstatus": orderstatus,
-        "OrderPlacedDate": OrderPlacedDate,
-        "OrderConfirmedDate": OrderConfirmedDate,
-        "DeliveryDate": DeliveryDate,
+        "Orderdetails": [
+          {
+            "OrderPlacedDate": OrderPlacedDate,
+            "OrderConfirmedDate": OrderConfirmedDate,
+            "DeliveryDate": DeliveryDate,
+          }
+        ],
         "status": status,
         "active": active,
         "created_by": createdBy,

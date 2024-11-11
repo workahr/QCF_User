@@ -181,8 +181,8 @@ class _MyorderPageState extends State<MyorderPage>
     var screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.lightGrey3,
-        leading: Icon(Icons.arrow_back, color: AppColors.n_black),
         title: Text(
           'My Order',
           style: TextStyle(
@@ -211,17 +211,17 @@ class _MyorderPageState extends State<MyorderPage>
             child: ListView.builder(
               itemCount: myorderpage.length,
               itemBuilder: (context, index) {
-                final order = orders[index];
+                // final order = orders[index];
+                final e = myorderpage[index];
 
-                final status = order['status'] as String;
+                final status = e.orderstatus as String;
                 final color = getStatusColor(status);
                 final icon = getStatusIcon(status);
                 final circlecolor = circleColor(status);
-                final e = myorderpage[index];
 
                 if (status == 'On Delivery')
                   return Container(
-                      margin: EdgeInsets.all(8.0),
+                      margin: EdgeInsets.all(0),
                       child: Column(children: [
                         ListTile(
                           leading: getStatusIcon(status),
@@ -438,7 +438,7 @@ class _MyorderPageState extends State<MyorderPage>
                       ]));
                 else
                   return Container(
-                      margin: EdgeInsets.all(8.0),
+                      margin: EdgeInsets.all(0),
                       child: Column(children: [
                         ListTile(
                           leading: getStatusIcon(status),
@@ -462,8 +462,8 @@ class _MyorderPageState extends State<MyorderPage>
                           ),
                         ),
                         Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 18, vertical: 18),
                           child: Row(
                             children: [
                               Expanded(

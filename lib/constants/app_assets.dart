@@ -100,4 +100,14 @@ class AppAssets {
   static const String profilepayment = 'images/profile_payment.png';
   static const String profilesettings = 'images/profile_setting.png';
   static const String genderal = 'images/genderal.png';
+  static const String address = "assets/images/address.png";
+
+  static const String home_black = 'images/Home_black.png';
+  static const String home_white = 'images/home_white.png';
+  static const String home_red = 'images/home_red.png';
+  static const String work_black = 'images/work_black.png';
+  static const String work_red = 'images/work_red.png';
+  static const String work_white = 'images/work_white.png';
+
+  static const String profileavathar = 'images/profileavathar.png';
 }
