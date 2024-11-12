@@ -42,12 +42,8 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.lightGrey3,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
-        ),
         title: HeadingWidget(title: "Back",),
       ),
       body: SingleChildScrollView(
@@ -74,7 +70,7 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
 
               HeadingWidget(
             title: 'Grill Chicken Arabian Restaurant',
-            fontSize: 18, fontWeight: FontWeight.bold,
+            fontSize: 18.0, fontWeight: FontWeight.bold,
             ),
               SizedBox(height: 8),
                HeadingWidget(title: "Order Items",fontSize: 18.0,fontWeight: FontWeight.bold,),

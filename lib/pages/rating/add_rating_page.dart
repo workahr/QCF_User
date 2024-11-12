@@ -41,10 +41,6 @@ class _AddRatingPageState extends State<AddRatingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
         title: HeadingWidget(title: 'Back'),
         backgroundColor: AppColors.lightGrey3,
         elevation: 1,
@@ -72,7 +68,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
             // Restaurant Image
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
+              child: Image.asset(
                 AppAssets.cartBiriyani,
                 width: 100,
                 height: 100,

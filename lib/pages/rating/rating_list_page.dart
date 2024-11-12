@@ -34,12 +34,9 @@ class _RatingListPageState extends State<RatingListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
-        ),
+      
         title: HeadingWidget(title: 'Review & Rating', color: Colors.black),
-        backgroundColor: Colors.white,
+       backgroundColor: AppColors.lightGrey3,
         elevation: 1,
         foregroundColor: Colors.black,
       ),
