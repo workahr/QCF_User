@@ -39,7 +39,7 @@ class _CartPageState extends State<CartPage> {
       appBar: AppBar(
         title: HeadingWidget(
           title: "Cart",
-          fontSize: 20,
+          fontSize: 20.0,
         ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
@@ -67,7 +67,7 @@ class _CartPageState extends State<CartPage> {
                     ),
                     HeadingWidget(
                       title: " Standard Delivery",
-                      fontSize: 16,
+                      fontSize: 16.0,
                     ),
                   ]),
                   SubHeadingWidget(
@@ -75,7 +75,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                   SubHeadingWidget(
                     title: "Lorem ipsum dolor sit...",
-                    fontSize: 12,
+                    fontSize: 12.0,
                   ),
                 ],
               ),
@@ -108,7 +108,7 @@ class _CartPageState extends State<CartPage> {
                                   children: [
                                     HeadingWidget(
                                         title: "Sweet Young Coconut",
-                                        fontSize: 16,
+                                        fontSize: 16.0,
                                         fontWeight: FontWeight.bold),
                                     SubHeadingWidget(
                                         title: "Fruits", color: Colors.grey),
@@ -141,7 +141,7 @@ class _CartPageState extends State<CartPage> {
                                                       horizontal: 12.0),
                                               child: HeadingWidget(
                                                   title: quantity.toString(),
-                                                  fontSize: 16,
+                                                  fontSize: 16.0,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             _buildQuantityButton(Icons.add, () {
@@ -216,7 +216,7 @@ class _CartPageState extends State<CartPage> {
                                 children: [
                                   HeadingWidget(
                                     title: "30-35 Mins",
-                                    fontSize: 18,
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -275,7 +275,7 @@ class _CartPageState extends State<CartPage> {
                                 children: [
                                   HeadingWidget(
                                     title: "40-45 Mins",
-                                    fontSize: 18,
+                                    fontSize: 18.0,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,
                                   ),
@@ -371,7 +371,7 @@ class _CartPageState extends State<CartPage> {
                           child: HeadingWidget(
                               title: isTripAdded ? "Remove Trip" : "Add Trip",
                               color: Colors.red,
-                              fontSize: 14),
+                              fontSize: 14.0),
                         ),
                       ],
                     ),
@@ -405,8 +405,8 @@ class _CartPageState extends State<CartPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        HeadingWidget(title: "To Pay", fontSize: 16),
-                        HeadingWidget(title: "AED 27.00", fontSize: 16),
+                        HeadingWidget(title: "To Pay", fontSize: 16.0),
+                        HeadingWidget(title: "AED 27.00", fontSize: 16.0),
                       ],
                     ),
                   ],
