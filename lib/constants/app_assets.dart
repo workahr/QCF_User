@@ -79,6 +79,13 @@ class AppAssets {
   static const String veg_icon = 'assets/images/veg_icon.png';
   static const String notification_icon = 'assets/images/notification_icon.png';
   static const String map_icon = 'assets/images/map_icon.png';
+  static const String search_icon = 'assets/images/search_icon.png';
+  static const String feedback_profile_icon =
+      'assets/images/feedback_profice_icon.png';
+  static const String feedback_admin_icon =
+      'assets/images/feedback_admin_icon.png';
+  static const String feedback_message_icon =
+      'assets/images/feedback_message_icon.png';
 
   // cart Image
   static const String homeicon = 'assets/images/orderpreview_homeicon.png';

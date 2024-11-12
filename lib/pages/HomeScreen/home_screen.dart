@@ -113,18 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-            preferredSize:
-                Size.fromHeight(60), // Customize this height as needed
+            preferredSize: Size.fromHeight(60),
             child: AppBar(
                 automaticallyImplyLeading: false,
                 backgroundColor: Color(0xFFE23744),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                      //  bottom: Radius.circular(20),
-                      ),
+                  borderRadius: BorderRadius.vertical(),
                 ),
                 title: Padding(
-                  padding: EdgeInsets.only(top: 20.0), // Add space at the top
+                  padding: EdgeInsets.only(top: 20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -132,8 +129,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Row(
                           children: [
-                            // Icon(Icons.location_on_outlined,
-                            //     color: Colors.white),
                             Image.asset(AppAssets.map_icon),
                             SizedBox(width: 8),
                             Column(
@@ -165,14 +160,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      // IconButton(
-                      //   icon: Icon(Icons.notifications_outlined,
-                      //       color: Colors.white),
-                      //   onPressed: () {
-                      //     Navigator.push(context,
-                      //         MaterialPageRoute(builder: (_) => HomeScreen1()));
-                      //   },
-                      // ),
                       GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -200,7 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
               child: CustomeTextField(
                 hint: "Restaurant name or dish",
-                prefixIcon: Icon(Icons.search, color: Color(0xFFE23744)),
+                // prefixIcon: Icon(Icons.search, color: Color(0xFFE23744)),
+                prefixIcon: Image.asset(AppAssets.search_icon),
                 boxColor: Colors.white,
                 borderColor: Colors.white,
                 focusBorderColor: Colors.blue,

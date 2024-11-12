@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namfood/constants/constants.dart';
 import 'package:namfood/pages/profile/edit_profilepage.dart';
+import 'package:namfood/pages/profile/feedback_page.dart';
 import 'package:namfood/widgets/button_widget.dart';
 
 import '../../address/edit_addresspage.dart';
@@ -247,23 +248,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
           height: 140,
           child: Column(
             children: [
-              Container(
-                height: 50,
-                child: ListTile(
-                  leading: Icon(
-                    Icons.feedback_outlined,
-                    color: AppColors.red,
-                  ),
-                  title: HeadingWidget(
-                    title: "Feedback & Complaints",
-                    color: AppColors.red,
-                  ),
-                  trailing: Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: AppColors.red,
-                  ),
-                ),
-              ),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FeedbackPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 50,
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.feedback_outlined,
+                        color: AppColors.red,
+                      ),
+                      title: HeadingWidget(
+                        title: "Feedback & Complaints",
+                        color: AppColors.red,
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: AppColors.red,
+                      ),
+                    ),
+                  )),
               Divider(color: AppColors.grey1),
               Container(
                 height: 50,
