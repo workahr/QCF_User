@@ -132,8 +132,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 2),
                         child: Row(
                           children: [
-                            Icon(Icons.location_on_outlined,
-                                color: Colors.white),
+                            // Icon(Icons.location_on_outlined,
+                            //     color: Colors.white),
+                            Image.asset(AppAssets.map_icon),
                             SizedBox(width: 8),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,14 +165,24 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.notifications_outlined,
-                            color: Colors.white),
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => HomeScreen1()));
-                        },
-                      ),
+                      // IconButton(
+                      //   icon: Icon(Icons.notifications_outlined,
+                      //       color: Colors.white),
+                      //   onPressed: () {
+                      //     Navigator.push(context,
+                      //         MaterialPageRoute(builder: (_) => HomeScreen1()));
+                      //   },
+                      // ),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen1(),
+                              ),
+                            );
+                          },
+                          child: Image.asset(AppAssets.notification_icon)),
                     ],
                   ),
                 ))),

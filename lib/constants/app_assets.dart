@@ -77,6 +77,8 @@ class AppAssets {
   static const String UserRounded = 'assets/images/UserRounded.png';
   static const String chickenchill = 'assets/images/chicken-chili-top.png';
   static const String veg_icon = 'assets/images/veg_icon.png';
+  static const String notification_icon = 'assets/images/notification_icon.png';
+  static const String map_icon = 'assets/images/map_icon.png';
 
   // cart Image
   static const String homeicon = 'assets/images/orderpreview_homeicon.png';

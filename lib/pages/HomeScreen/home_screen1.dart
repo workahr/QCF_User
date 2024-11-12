@@ -265,7 +265,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                     padding: const EdgeInsets.fromLTRB(21, 0, 0, 12),
                     child: HeadingWidget(
                       title: "Restaurant Explore",
-                      fontSize: 17,
+                      fontSize: 17.0,
                     ),
                   ),
                   ListView.builder(
@@ -333,7 +333,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                             HeadingWidget(
                                               title: 'Non-Veg',
                                               color: Color(0xFFEF4848),
-                                              fontSize: 11,
+                                              fontSize: 11.0,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ],
@@ -360,7 +360,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                                                 HeadingWidget(
                                                   title:
                                                       'Grill Chicken Arabian \nRestaurant',
-                                                  fontSize: 16,
+                                                  fontSize: 16.0,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.white,
                                                 ),
