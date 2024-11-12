@@ -95,19 +95,20 @@ class AppAssets {
   static const String upiicon = 'images/upi-icon.png';
   static const String card = 'images/Card.png';
 
-  static const String profileorderhistroy = 'images/profile_orderhistory.png';
-  static const String profileaddress = 'images/profile_address.png';
-  static const String profilepayment = 'images/profile_payment.png';
-  static const String profilesettings = 'images/profile_setting.png';
-  static const String genderal = 'images/genderal.png';
+  static const String profileorderhistroy =
+      'assets/images/profile_orderhistory.png';
+  static const String profileaddress = 'assets/images/profile_address.png';
+  static const String profilepayment = 'assets/images/profile_payment.png';
+  static const String profilesettings = 'assets/images/profile_setting.png';
+  static const String genderal = 'assets/images/genderal.png';
   static const String address = "assets/images/address.png";
 
-  static const String home_black = 'images/Home_black.png';
-  static const String home_white = 'images/home_white.png';
-  static const String home_red = 'images/home_red.png';
-  static const String work_black = 'images/work_black.png';
-  static const String work_red = 'images/work_red.png';
-  static const String work_white = 'images/work_white.png';
+  static const String home_black = 'assets/images/Home_black.png';
+  static const String home_white = 'assets/images/home_white.png';
+  static const String home_red = 'assets/images/home_red.png';
+  static const String work_black = 'assets/images/work_black.png';
+  static const String work_red = 'assets/images/work_red.png';
+  static const String work_white = 'assets/images/work_white.png';
 
-  static const String profileavathar = 'images/profileavathar.png';
+  static const String profileavathar = 'assets/images/profileavathar.png';
 }

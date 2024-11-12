@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 30,
+                    height: 60,
                   ),
                   SizedBox(height: 16),
                   Row(
@@ -243,46 +243,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
           ),
         ),
-        Positioned(
-            child: Column(
-          children: [
-            Container(
-              height: 50,
-              child: ListTile(
-                leading: Icon(
-                  Icons.feedback_outlined,
-                  color: AppColors.red,
-                ),
-                title: HeadingWidget(
-                  title: "Feedback & Complaints",
-                  color: AppColors.red,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColors.red,
-                ),
-              ),
-            ),
-            Divider(color: AppColors.grey1),
-            Container(
-              height: 50,
-              child: ListTile(
-                leading: Icon(
-                  Icons.logout_outlined,
-                  color: AppColors.red,
-                ),
-                title: HeadingWidget(
-                  title: "Log out",
-                  color: AppColors.red,
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: AppColors.red,
+        BottomAppBar(
+          height: 140,
+          child: Column(
+            children: [
+              Container(
+                height: 50,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.feedback_outlined,
+                    color: AppColors.red,
+                  ),
+                  title: HeadingWidget(
+                    title: "Feedback & Complaints",
+                    color: AppColors.red,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColors.red,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ))
+              Divider(color: AppColors.grey1),
+              Container(
+                height: 50,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.logout_outlined,
+                    color: AppColors.red,
+                  ),
+                  title: HeadingWidget(
+                    title: "Log out",
+                    color: AppColors.red,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: AppColors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
       ]),
     );
   }
