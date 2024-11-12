@@ -3,8 +3,11 @@ import 'package:namfood/widgets/sub_heading_widget.dart';
 
 import '../../constants/app_assets.dart';
 import '../../constants/app_colors.dart';
+import '../../services/comFuncService.dart';
+import '../../services/nam_food_api_service.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/heading_widget.dart';
+import '../models/add_ratinglist_model.dart';
 
 class AddRatingPage extends StatefulWidget {
   @override
@@ -36,6 +39,57 @@ class _AddRatingPageState extends State<AddRatingPage> {
       }),
     );
   }
+
+
+  final NamFoodApiService apiService = NamFoodApiService();
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    getAddRatingList();
+  }
+
+  List<AddRatingList> adddRatingList = [];
+  List<AddRatingList> adddRatingListAll = [];
+  bool isLoading = false;
+  double totalDiscountPrice = 0.0; 
+
+  Future getAddRatingList() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getAddRatingList();
+      var response = AddRatinglistmodelFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          adddRatingList = response.list;
+          adddRatingListAll = adddRatingList;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          adddRatingList = [];
+          adddRatingListAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        adddRatingList = [];
+        adddRatingListAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +123,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: Image.asset(
-                AppAssets.cartBiriyani,
+                adddRatingList[0].dishimage.toString(),
                 width: 100,
                 height: 100,
                 fit: BoxFit.fill,
@@ -77,8 +131,9 @@ class _AddRatingPageState extends State<AddRatingPage> {
             ),
             const SizedBox(height: 20),
             // Restaurant Name and Rating
+            if(adddRatingList.isNotEmpty)
             HeadingWidget(
-             title:  'Grill Chicken Arabian Restaurant',
+             title:  adddRatingList[0].storeName,
              fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black,
             ),
             SubHeadingWidget(
@@ -86,7 +141,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
               color: AppColors.black,
             ),
             const SizedBox(height: 10),
-            buildStarRating(restaurantRating, (rating) {
+            buildStarRating(adddRatingList[0].storeRating!, (rating) {
               setState(() {
                 restaurantRating = rating;
               });
@@ -124,18 +179,25 @@ class _AddRatingPageState extends State<AddRatingPage> {
                         fontWeight: FontWeight.bold),
                         Divider(color: Colors.grey[300]),
                     const SizedBox(height: 8),
-                    buildDishRating('Chicken Biryani', chickenBiryaniRating,
-                        (rating) {
+                    ...adddRatingList[0].dishes.map((dish) {
+                    return buildDishRating(dish.name ?? '', double.parse(dish.rating.toString()) , (newRating) {
                       setState(() {
-                        chickenBiryaniRating = rating;
+                        dish.rating =  int.parse(newRating.toString());
                       });
-                    }),
-                    buildDishRating('Chicken Kebab', chickenKebabRating,
-                        (rating) {
-                      setState(() {
-                        chickenKebabRating = rating;
-                      });
-                    }),
+                    });
+                  }).toList(),
+                    // buildDishRating('Chicken Biryani', chickenBiryaniRating,
+                    //     (rating) {
+                    //   setState(() {
+                    //     chickenBiryaniRating = rating;
+                    //   });
+                    // }),
+                    // buildDishRating('Chicken Kebab', chickenKebabRating,
+                    //     (rating) {
+                    //   setState(() {
+                    //     chickenKebabRating = rating;
+                    //   });
+                    // }),
                   ],
                 ),
               //),
@@ -161,8 +223,9 @@ class _AddRatingPageState extends State<AddRatingPage> {
                         style: TextStyle(fontWeight: FontWeight.bold)),
                         Divider(color: Colors.grey[300]),
                     const SizedBox(height: 8),
+                     if(adddRatingList.isNotEmpty)
                     buildDishRating(
-                        'Delivered by store', deliveryPersonRating,
+                        adddRatingList[0].deliveryperson.toString(), double.parse(adddRatingList[0].personRating.toString()) ,
                         (rating) {
                       setState(() {
                         deliveryPersonRating = rating;

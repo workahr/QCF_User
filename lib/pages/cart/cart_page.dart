@@ -153,11 +153,12 @@ class _CartPageState extends State<CartPage> {
                                     ),
                                   ])
                             ])),
-                        Divider(
-                          color: Colors.grey,
-                        ),
+                         Divider(
+                  color: Colors.grey.shade300,
+                 thickness: 1,
+                  ),
                         Padding(
-                            padding: const EdgeInsets.all(13.0),
+                            padding: const EdgeInsets.all(10.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -187,12 +188,12 @@ class _CartPageState extends State<CartPage> {
                   ),
                   SizedBox(height: 8),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () => _selectOption(1),
                         child: Container(
-                          width: 150,
+                          width: 170,
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -250,7 +251,7 @@ class _CartPageState extends State<CartPage> {
                       GestureDetector(
                         onTap: () => _selectOption(2),
                         child: Container(
-                          width: 150,
+                          width: 170,
                           padding: EdgeInsets.all(12.0),
                           decoration: BoxDecoration(
                             color: Colors.white,

@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
+import '../pages/json_data/add_ratinglist_json.dart';
 import '../pages/json_data/homescreen_json.dart';
 import '../pages/json_data/home_carousel_json.dart';
 import '../pages/json_data/myorder_page_json.dart';
+import '../pages/json_data/order_preview_json.dart';
 import '../pages/json_data/store_page_json.dart';
 
 class NamFoodApiService {
@@ -1469,6 +1471,31 @@ class NamFoodApiService {
       // Create a list of DriversList with hardcoded data
 
       var result = await getStoreListJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+
+
+    Future getOrderPreviewlist() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getOrderPreviewListJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+
+   Future getAddRatingList() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getAddRatingJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors
