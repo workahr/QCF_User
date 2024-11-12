@@ -23,7 +23,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
   TextEditingController commentController = TextEditingController();
 
   // Method to build star rating widget
-  Widget buildStarRating(double rating, ValueChanged<double> onRatingChanged) {
+  Widget buildStarRating(int rating, ValueChanged<double> onRatingChanged) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(5, (index) {
@@ -31,7 +31,8 @@ class _AddRatingPageState extends State<AddRatingPage> {
           onPressed: () {
             onRatingChanged(index + 1.0);
           },
-          icon: Icon(size: 20.0,
+          icon: Icon(
+            size: 16.0,
             Icons.star,
             color: index < rating ? Colors.amber : Colors.grey[300],
           ),
@@ -40,9 +41,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
     );
   }
 
-
   final NamFoodApiService apiService = NamFoodApiService();
-
 
   @override
   void initState() {
@@ -54,7 +53,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
   List<AddRatingList> adddRatingList = [];
   List<AddRatingList> adddRatingListAll = [];
   bool isLoading = false;
-  double totalDiscountPrice = 0.0; 
+  double totalDiscountPrice = 0.0;
 
   Future getAddRatingList() async {
     setState(() {
@@ -90,7 +89,6 @@ class _AddRatingPageState extends State<AddRatingPage> {
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,126 +111,134 @@ class _AddRatingPageState extends State<AddRatingPage> {
                 const Icon(Icons.chat_bubble_outline, color: Colors.grey),
                 const SizedBox(width: 8),
                 HeadingWidget(
-                 title: 'We need your important comments!',
-                fontWeight: FontWeight.bold,
+                  title: 'We need your important comments!',
+                  fontWeight: FontWeight.bold,
                 ),
               ],
             ),
             const SizedBox(height: 20),
             // Restaurant Image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.asset(
-                adddRatingList[0].dishimage.toString(),
-                width: 100,
-                height: 100,
-                fit: BoxFit.fill,
+            if (adddRatingList.isNotEmpty)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  adddRatingList[0].dishimage.toString(),
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
             const SizedBox(height: 20),
             // Restaurant Name and Rating
-            if(adddRatingList.isNotEmpty)
-            HeadingWidget(
-             title:  adddRatingList[0].storeName,
-             fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black,
-            ),
+            if (adddRatingList.isNotEmpty)
+              HeadingWidget(
+                title: adddRatingList[0].storeName,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             SubHeadingWidget(
-             title:  'Please take a moment to rate a review',
+              title: 'Please take a moment to rate a review',
               color: AppColors.black,
             ),
             const SizedBox(height: 10),
-            buildStarRating(adddRatingList[0].storeRating!, (rating) {
-              setState(() {
-                restaurantRating = rating;
-              });
-            }),
+            if (adddRatingList.isNotEmpty)
+              buildStarRating(adddRatingList[0].storeRating!, (rating) {
+                setState(() {
+                  restaurantRating = rating;
+                });
+              }),
             const SizedBox(height: 20),
             // Description Text Field
-           CustomeTextField(
-                width: MediaQuery.of(context).size.width - 10.0,
-                hint: 'Description',
-               
-                labelColor: AppColors.primary,
-                // borderColor: AppColors.primary2,
-                focusBorderColor: AppColors.primary,
-                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                borderColor: AppColors.lightGrey3,
-                lines: 4,
-              ),
+            CustomeTextField(
+              width: MediaQuery.of(context).size.width - 10.0,
+              hint: 'Description',
+
+              labelColor: AppColors.primary,
+              // borderColor: AppColors.primary2,
+              focusBorderColor: AppColors.primary,
+              borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+              borderColor: AppColors.lightGrey3,
+              lines: 4,
+            ),
             const SizedBox(height: 20),
-          //Bill container details
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child:
-                //  Padding(
-                // padding: EdgeInsets.all(16.0),
-                // child:
-                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    HeadingWidget(title: 'Rate your order dish',
-                        fontWeight: FontWeight.bold),
-                        Divider(color: Colors.grey[300]),
-                    const SizedBox(height: 8),
+            //Bill container details
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child:
+                  //  Padding(
+                  // padding: EdgeInsets.all(16.0),
+                  // child:
+                  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeadingWidget(
+                      title: 'Rate your order dish',
+                      fontWeight: FontWeight.bold),
+                  Divider(color: Colors.grey[300]),
+                  const SizedBox(height: 8),
+                  if (adddRatingList.isNotEmpty)
                     ...adddRatingList[0].dishes.map((dish) {
-                    return buildDishRating(dish.name ?? '', double.parse(dish.rating.toString()) , (newRating) {
-                      setState(() {
-                        dish.rating =  int.parse(newRating.toString());
+                      return buildDishRating(
+                          dish.name ?? '', int.parse(dish.rating.toString()),
+                          (newRating) {
+                        setState(() {
+                          dish.rating = int.parse(newRating.toString());
+                        });
                       });
-                    });
-                  }).toList(),
-                    // buildDishRating('Chicken Biryani', chickenBiryaniRating,
-                    //     (rating) {
-                    //   setState(() {
-                    //     chickenBiryaniRating = rating;
-                    //   });
-                    // }),
-                    // buildDishRating('Chicken Kebab', chickenKebabRating,
-                    //     (rating) {
-                    //   setState(() {
-                    //     chickenKebabRating = rating;
-                    //   });
-                    // }),
-                  ],
-                ),
+                    }).toList(),
+                  // buildDishRating('Chicken Biryani', chickenBiryaniRating,
+                  //     (rating) {
+                  //   setState(() {
+                  //     chickenBiryaniRating = rating;
+                  //   });
+                  // }),
+                  // buildDishRating('Chicken Kebab', chickenKebabRating,
+                  //     (rating) {
+                  //   setState(() {
+                  //     chickenKebabRating = rating;
+                  //   });
+                  // }),
+                ],
+              ),
               //),
             ),
             const SizedBox(height: 20),
             // Rate Delivery Person Section
-             //Bill container details
-              Container(
-                padding: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child: 
-                // Padding(
-                // padding: EdgeInsets.all(16.0),
-                // child: 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Rate Delivery Person',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                        Divider(color: Colors.grey[300]),
-                    const SizedBox(height: 8),
-                     if(adddRatingList.isNotEmpty)
-                    buildDishRating(
-                        adddRatingList[0].deliveryperson.toString(), double.parse(adddRatingList[0].personRating.toString()) ,
+            //Bill container details
+            Container(
+              padding: const EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child:
+                  // Padding(
+                  // padding: EdgeInsets.all(16.0),
+                  // child:
+                  Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Rate Delivery Person',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Divider(color: Colors.grey[300]),
+                  const SizedBox(height: 8),
+                  if (adddRatingList.isNotEmpty)
+                    buildDishRating(adddRatingList[0].deliveryperson.toString(),
+                        int.parse(adddRatingList[0].personRating.toString()),
                         (rating) {
                       setState(() {
                         deliveryPersonRating = rating;
                       });
                     }),
-                  ],
-                ),
+                ],
+              ),
               //),
             ),
             const SizedBox(height: 30),
@@ -258,12 +264,16 @@ class _AddRatingPageState extends State<AddRatingPage> {
   }
 
   // Method to build individual dish rating row
-  Widget buildDishRating(String dishName, double rating, ValueChanged<double> onRatingChanged) {
+  Widget buildDishRating(
+      String dishName, int rating, ValueChanged<double> onRatingChanged) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SubHeadingWidget(title: dishName,color: AppColors.black,),
-        
+        SubHeadingWidget(
+          fontSize: 12.0,
+          title: dishName,
+          color: AppColors.black,
+        ),
         buildStarRating(rating, onRatingChanged),
       ],
     );

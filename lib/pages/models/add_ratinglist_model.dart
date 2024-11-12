@@ -43,12 +43,12 @@ class AddRatinglistmodel {
 class AddRatingList {
   int id;
   String? storeName;
-  double? storeRating;
-   double? personRating;
+  int? storeRating;
+  int? personRating;
   String? qty;
   String? deliveryperson;
   String? dishimage;
-   List<Dishes> dishes;
+  List<Dishes> dishes;
   int status;
   int active;
   int createdBy;
@@ -58,7 +58,6 @@ class AddRatingList {
 
   AddRatingList({
     required this.id,
-   
     required this.storeName,
     this.storeRating,
     this.personRating,
@@ -82,8 +81,8 @@ class AddRatingList {
         qty: json["qty"],
         deliveryperson: json["delivery_person"],
         dishimage: json["dishimage"],
-        dishes: List<Dishes>.from(
-            json["dishes"].map((x) => Dishes.fromJson(x))),
+        dishes:
+            List<Dishes>.from(json["dishes"].map((x) => Dishes.fromJson(x))),
         status: json["status"],
         active: json["active"],
         createdBy: json["created_by"],
@@ -109,29 +108,22 @@ class AddRatingList {
       };
 }
 
-
 class Dishes {
-  
   String? name;
   int? rating;
- 
 
   Dishes({
     required this.name,
     required this.rating,
-  
   });
 
   factory Dishes.fromJson(Map<String, dynamic> json) => Dishes(
-
         name: json["name"],
         rating: json["rating"],
-      
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
         "rating": rating,
-        
       };
 }
