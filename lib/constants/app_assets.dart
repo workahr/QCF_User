@@ -72,14 +72,15 @@ class AppAssets {
   static const String bannerimg = 'assets/images/bannerpaneer_masala1.png';
   static const String offerimg = 'assets/images/Vector.png';
   static const String nonveg_icon = 'assets/images/nonVeg_icon.png';
-  static const String ChefHat = 'assets/images/ChefHat.png';
+  static const String ChefHat = 'assets/images/ChefHat_icon.png';
   static const String Home = 'assets/images/Home.png';
-  static const String UserRounded = 'assets/images/UserRounded.png';
+  static const String UserRounded = 'assets/images/user_icon.png';
   static const String chickenchill = 'assets/images/chicken-chili-top.png';
   static const String veg_icon = 'assets/images/veg_icon.png';
   static const String notification_icon = 'assets/images/notification_icon.png';
   static const String map_icon = 'assets/images/map_icon.png';
   static const String search_icon = 'assets/images/search_icon.png';
+  static const String home_icon = 'assets/images/home_icon1.png';
   static const String feedback_profile_icon =
       'assets/images/feedback_profice_icon.png';
   static const String feedback_admin_icon =

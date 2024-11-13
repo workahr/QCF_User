@@ -12,6 +12,7 @@ import '../../widgets/sub_heading_widget.dart';
 
 import '../models/myorder_page_model.dart';
 import '../rating/add_rating_page.dart';
+import 'cancel_booking_page.dart';
 import 'order_preview_page.dart';
 
 class MyorderPage extends StatefulWidget {
@@ -417,7 +418,15 @@ class _MyorderPageState extends State<MyorderPage>
                                   height: 30,
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            CancelBookingPage(),
+                                      ),
+                                    );
+                                  },
                                   child: Text(
                                     'Order Cancel',
                                     style: TextStyle(

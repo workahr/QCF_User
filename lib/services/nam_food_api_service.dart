@@ -11,6 +11,7 @@ import '../pages/json_data/home_carousel_json.dart';
 import '../pages/json_data/myorder_page_json.dart';
 import '../pages/json_data/order_preview_json.dart';
 import '../pages/json_data/store_page_json.dart';
+import '../pages/json_data/storerating_json.dart';
 
 class NamFoodApiService {
   static String liveApiPath = AppConstants.apiBaseUrl;
@@ -1518,13 +1519,26 @@ class NamFoodApiService {
     }
   }
 
-
 // Cart List Api
   Future getCartList() async {
     try {
       // Create a list of DriversList with hardcoded data
 
       var result = await getCartListJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+
+  // store Rating
+
+  Future getstoreratinglist() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getstoreratingPageJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors

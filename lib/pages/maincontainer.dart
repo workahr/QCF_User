@@ -95,7 +95,9 @@ class _MainContainerState extends State<MainContainer>
           items: [
             BottomNavigationBarItem(
               icon: Image.asset(
-                AppAssets.Home,
+                AppAssets.home_icon,
+                height: 25,
+                width: 25,
               ),
               label: 'Home',
 
@@ -104,12 +106,16 @@ class _MainContainerState extends State<MainContainer>
             BottomNavigationBarItem(
               icon: Image.asset(
                 AppAssets.ChefHat,
+                height: 25,
+                width: 25,
               ),
               label: 'Orders',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(
                 AppAssets.UserRounded,
+                height: 25,
+                width: 25,
               ),
               label: 'Profile',
             ),

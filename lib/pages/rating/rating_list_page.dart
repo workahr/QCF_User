@@ -3,6 +3,9 @@ import 'package:namfood/widgets/heading_widget.dart';
 
 import '../../constants/app_assets.dart';
 import '../../constants/app_colors.dart';
+import '../../services/comFuncService.dart';
+import '../../services/nam_food_api_service.dart';
+import '../models/storerating_model.dart';
 
 class RatingListPage extends StatefulWidget {
   @override
@@ -10,33 +13,60 @@ class RatingListPage extends StatefulWidget {
 }
 
 class _RatingListPageState extends State<RatingListPage> {
-  // Dummy data for reviews
-  final List<Map<String, dynamic>> reviews = [
-    {
-      'name': 'Tony Reginal',
-      'profilePic': AppAssets.profileimg,
-      'rating': 4.5,
-      'review': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      'dishes': {'Chicken Biryani': 4, 'Chicken Kebab': 4},
-       'color': AppColors.darkGreen
-    },
-    {
-      'name': 'Tony Reginal',
-      'profilePic': AppAssets.profileimg,
-      'rating': 3.5,
-      'review': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      'dishes': {'Chicken Biryani': 3, 'Chicken Kebab': 4},
-       'color': AppColors.secondary
+  final NamFoodApiService apiService = NamFoodApiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getstoreratinglist();
+  }
+
+  //AddtoCart
+  List<storerating> storeratinglistpage = [];
+  List<storerating> storeratinglistpageAll = [];
+  bool isLoading = false;
+
+  Future getstoreratinglist() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getstoreratinglist();
+      var response = storeratinglistmodelFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          storeratinglistpage = response.list;
+          storeratinglistpageAll = storeratinglistpage;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          storeratinglistpage = [];
+          storeratinglistpageAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        storeratinglistpage = [];
+        storeratinglistpageAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
     }
-  ];
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
         title: HeadingWidget(title: 'Review & Rating', color: Colors.black),
-       backgroundColor: AppColors.lightGrey3,
+        backgroundColor: AppColors.lightGrey3,
         elevation: 1,
         foregroundColor: Colors.black,
       ),
@@ -54,15 +84,17 @@ class _RatingListPageState extends State<RatingListPage> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-              
-               // SizedBox(width: 10),
+                // SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                      Text(
-                  '4.0',
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.red),
-                ),
+                    Text(
+                      '4.0',
+                      style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    ),
                     buildStarRow(4),
                     SizedBox(height: 5),
                     Text('2,364 Reviews', style: TextStyle(color: Colors.grey)),
@@ -73,7 +105,7 @@ class _RatingListPageState extends State<RatingListPage> {
             SizedBox(height: 20),
             // Rating Distribution Bar
             buildRatingDistribution(),
-             Divider(color: Colors.grey[300]),
+            Divider(color: Colors.grey[300]),
             SizedBox(height: 20),
             // Detailed Reviews Section
             Text(
@@ -81,7 +113,120 @@ class _RatingListPageState extends State<RatingListPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            ...reviews.map((review) => buildReviewCard(review)).toList(),
+            ListView.builder(
+                itemCount: storeratinglistpage.length,
+                shrinkWrap:
+                    true, // Let the list take only as much space as needed
+                physics:
+                    NeverScrollableScrollPhysics(), // Disable scrolling for ListView
+                itemBuilder: (context, index) {
+                  final e = storeratinglistpage[index];
+                  return Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Profile Picture
+                            CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                e.image.toString(),
+                              ),
+                              radius: 25,
+                            ),
+                            SizedBox(width: 16),
+                            // Review Content
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Reviewer Name and Rating
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(e.username.toString(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 4.0,
+                                          horizontal: 8.0,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.green,
+                                          borderRadius:
+                                              BorderRadius.circular(12.0),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: AppColors.light,
+                                              size: 16,
+                                            ),
+                                            SizedBox(width: 4),
+                                            Text(
+                                              e.rating.toString(), // '4.5',
+                                              style: TextStyle(
+                                                color: AppColors.light,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 10),
+                                  // Dishes Rating
+                                  Row(children: [
+                                    Text("Chicken Briyani"),
+                                    Row(
+                                      children: List.generate(5, (index) {
+                                        return Icon(
+                                          Icons.star,
+                                          color: index < e.star
+                                              ? Colors.amber
+                                              : Colors.grey[300],
+                                        );
+                                      }),
+                                    )
+                                  ]),
+                                  Row(children: [
+                                    Text("Chicken Kebab"),
+                                    Row(
+                                      children: List.generate(5, (index) {
+                                        return Icon(
+                                          Icons.star,
+                                          color: index < e.star
+                                              ? Colors.amber
+                                              : Colors.grey[300],
+                                        );
+                                      }),
+                                    )
+                                  ]),
+                                  SizedBox(height: 10),
+                                  // Review Text
+                                  Text(
+                                    e.description.toString(),
+                                    //  review['review'],
+                                    style: TextStyle(color: Colors.grey[700]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Divider(
+                            color: Colors.grey[
+                                300]), // Add a divider after each review card
+                      ],
+                    ),
+                  );
+                })
           ],
         ),
       ),
@@ -132,86 +277,4 @@ class _RatingListPageState extends State<RatingListPage> {
       ),
     );
   }
-
-  // Method to build individual review card
- Widget buildReviewCard(Map<String, dynamic> review) {
-  return Padding(
-    padding: EdgeInsets.all(12.0),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Profile Picture
-            CircleAvatar(
-              backgroundImage: NetworkImage(review['profilePic']),
-              radius: 25,
-            ),
-            SizedBox(width: 16),
-            // Review Content
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Reviewer Name and Rating
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(review['name'], style: TextStyle(fontWeight: FontWeight.bold)),
-                       Container(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 4.0,
-                                horizontal: 8.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: review['color'],
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: AppColors.light,
-                                    size: 16,
-                                  ),
-                                  SizedBox(width: 4),
-                                  Text(
-                                    '4.5',
-                                    style: TextStyle(
-                                      color: AppColors.light,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  // Dishes Rating
-                  ...review['dishes'].entries.map((dish) => Row(
-                        children: [
-                          Text(dish.key),
-                          SizedBox(width: 10),
-                          buildStarRow(dish.value),
-                        ],
-                      )),
-                  SizedBox(height: 10),
-                  // Review Text
-                  Text(
-                    review['review'],
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        Divider(color: Colors.grey[300]),  // Add a divider after each review card
-      ],
-    ),
-  );
 }
-}
-
