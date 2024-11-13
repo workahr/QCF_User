@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/constants.dart';
 import '../pages/json_data/add_ratinglist_json.dart';
+import '../pages/json_data/car_list_json.dart';
 import '../pages/json_data/feedback_page_json.dart';
 import '../pages/json_data/homescreen_json.dart';
 import '../pages/json_data/home_carousel_json.dart';
@@ -1510,6 +1511,20 @@ class NamFoodApiService {
       // Create a list of DriversList with hardcoded data
 
       var result = await getfeedbackPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+
+
+// Cart List Api
+  Future getCartList() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getCartListJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors

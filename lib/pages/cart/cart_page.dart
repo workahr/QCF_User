@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../constants/app_assets.dart';
 import '../../constants/app_colors.dart';
+import '../../services/comFuncService.dart';
+import '../../services/nam_food_api_service.dart';
 import '../../widgets/heading_widget.dart';
 import '../../widgets/sub_heading_widget.dart';
+import '../models/cart_list_model.dart';
 import '../store/store_page.dart';
 
 class CartPage extends StatefulWidget {
@@ -14,6 +17,67 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+
+  final NamFoodApiService apiService = NamFoodApiService();
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    getOrderPreviewlist();
+  }
+
+  List<CartList> cartList = [];
+  List<CartList> cartListAll = [];
+  bool isLoading = false;
+  double totalDiscountPrice = 0.0; 
+
+  Future getOrderPreviewlist() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getCartList();
+      var response = CartListmodelFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          cartList = response.list;
+          cartListAll = cartList;
+          isLoading = false;
+          calculateTotalDiscount();
+        });
+      } else {
+        setState(() {
+          cartList = [];
+          cartListAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        cartList = [];
+        cartListAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
+  void calculateTotalDiscount() {
+  totalDiscountPrice = cartList.fold(
+    0.0, 
+    (sum, item) => sum + (int.parse(item.quantityPrice.toString())  ?? 0.0),
+  );
+
+   finalTotal = totalDiscountPrice + deliveryFee + platformFee + gstFee - discount;
+  
+  setState(() {});
+}
   int quantity = 3;
   double itemPrice = 15.50;
   double deliveryFee = 44.0;
@@ -21,6 +85,10 @@ class _CartPageState extends State<CartPage> {
   double gstFee = 2.0;
   double discount = 0.0;
   bool isTripAdded = false;
+double finalTotal = 0.0;
+
+  
+
 
   int selectedOption =
       0; // 0 for no selection, 1 for first option, 2 for second option
@@ -36,6 +104,7 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFF6F6F6),
       appBar: AppBar(
         title: HeadingWidget(
           title: "Cart",
@@ -80,6 +149,8 @@ class _CartPageState extends State<CartPage> {
                 ],
               ),
               SizedBox(height: 20),
+
+            if(cartList.isNotEmpty)
               Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -92,100 +163,226 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ],
                   ),
-                  child: Column(
+                  child: ListView.separated(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: cartList.length,
+              separatorBuilder: (context, index) => Divider(
+                color: Colors.grey.shade300,
+                thickness: 1,
+              ),
+              itemBuilder: (context, index) {
+                final item = cartList[index];
+                return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Row(children: [
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
                               Image.asset(
-                                AppAssets.cartBiriyani,
-                                height: 80,
-                                width: 80,
+                                item.dishimage.toString(),
+                                height: 60,
+                                width: 60,
+                                fit: BoxFit.fill,
                               ),
-                              Column(
+                            Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                    
+                                      SizedBox(
+                                        width: 150,
+                                        child: HeadingWidget(
+                                          overflow: TextOverflow.visible,
+                                          maxLines: 2,
+                                          title: item.dishname.toString(),
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 8.0),
+                                      SubHeadingWidget(title: '₹ ${item.discountprice.toString()}', color: AppColors.black),
+                                    ],
+                                  ),
+
+
+                                   Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    HeadingWidget(
-                                        title: "Sweet Young Coconut",
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-                                    SubHeadingWidget(
-                                        title: "Fruits", color: Colors.grey),
-                                    Text(
-                                      "AED 20.0",
-                                      style: TextStyle(
-                                        decoration: TextDecoration.lineThrough,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        HeadingWidget(
-                                            title: "AED $itemPrice",
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                        SizedBox(width: 50),
+
                                         Row(
                                           children: [
                                             _buildQuantityButton(Icons.remove,
                                                 () {
-                                              if (quantity > 1)
-                                                setState(() => quantity--);
+                                              if (item.qty! > 1)
+                                                setState(() => item.qty! - 1);
                                             }),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 12.0),
                                               child: HeadingWidget(
-                                                  title: quantity.toString(),
+                                                  title: item.qty.toString(),
                                                   fontSize: 16.0,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             _buildQuantityButton(Icons.add, () {
-                                              setState(() => quantity++);
+                                              setState(() => item.qty!+1);
                                             }),
                                           ],
-                                        )
-                                      ],
-                                    ),
+                                        ),
+                                        SizedBox(height: 8.0,),
+
+                                        HeadingWidget(
+                                        title: '₹ ${item.quantityPrice.toString()}',
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+
                                   ])
                             ])),
-                         Divider(
-                  color: Colors.grey.shade300,
-                 thickness: 1,
-                  ),
-                        Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SubHeadingWidget(
-                                  title: "Add More Items",
-                                ),
-                                Icon(
-                                  Icons.add_circle_outline_rounded,
-                                  color: Colors.grey,
-                                )
-                              ],
-                            ))
-                      ])),
+                //          Divider(
+                //   color: Colors.grey.shade300,
+                //  thickness: 1,
+                //   ),
+                        // Padding(
+                        //     padding: const EdgeInsets.all(10.0),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       children: [
+                        //         SubHeadingWidget(
+                        //           title: "Add More Items", color: AppColors.black
+                        //         ),
+                        //         Icon(
+                        //           Icons.add_circle_outline_rounded,
+                        //           color: Colors.grey,
+                        //         )
+                        //       ],
+                        //     ))
+                      ]);})),
+
+                      
               SizedBox(
                 height: 10,
               ),
             
-              Column(
+             
+              SizedBox(height: 16),
+              HeadingWidget(
+                title: "Bill Details",
+              ),
+              SizedBox(height: 16),
+              Container(
+                padding: EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SubHeadingWidget(title: "Item total", color: AppColors.black),
+                        SubHeadingWidget(
+                          title: "₹ ${totalDiscountPrice.toStringAsFixed(2)}", color: AppColors.black
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SubHeadingWidget(
+                              title: "Delivery Fee | 9.8 km", color: AppColors.black
+                            ),
+                            SubHeadingWidget(
+                              title: "₹ ${deliveryFee.toStringAsFixed(2)}", color: AppColors.black
+                            ),
+                          ],
+                        ),
+                        SubHeadingWidget(
+                          title: "Enjoy Discounted Delivery!", color: AppColors.black
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SubHeadingWidget(
+                          title: "Delivery Trip", color: AppColors.black
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isTripAdded = !isTripAdded;
+                            });
+                          },
+                          child: HeadingWidget(
+                              title: isTripAdded ? "Remove Trip" : "Add Trip",
+                              color: Colors.red,
+                              fontSize: 14.0),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SubHeadingWidget(
+                          title: "Platform fee", color: AppColors.black
+                        ),
+                        SubHeadingWidget(
+                          title: "₹ ${platformFee.toStringAsFixed(2)}", color: AppColors.black
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SubHeadingWidget(
+                          title: "GST and Restaurant Charges", color: AppColors.black
+                        ),
+                        SubHeadingWidget(
+                          title: "₹ ${gstFee.toStringAsFixed(2)}", color: AppColors.black
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        HeadingWidget(title: "To Pay", fontSize: 16.0),
+                        HeadingWidget(title: "₹ ${finalTotal.toStringAsFixed(2)}", fontSize: 16.0),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+
+               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   HeadingWidget(
                     title: "Delivery Type",
                   ),
-                  SubHeadingWidget(
-                    title: "Your Product is Always Fresh",
-                    color: Colors.grey,
-                  ),
+                  // SubHeadingWidget(
+                  //   title: "Your Product is Always Fresh",
+                  //   color: Colors.grey,
+                  // ),
                   SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -231,7 +428,7 @@ class _CartPageState extends State<CartPage> {
                               ),
                               Row(children: [
                                 HeadingWidget(
-                                  title: "AED 44",
+                                  title: "₹ 44",
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -289,7 +486,7 @@ class _CartPageState extends State<CartPage> {
                                 ],
                               ),
                               HeadingWidget(
-                                title: "AED 60",
+                                title: "₹ 60",
                                 color: Colors.green,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -308,111 +505,7 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
-              HeadingWidget(
-                title: "Bill Details",
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(title: "Item total"),
-                        SubHeadingWidget(
-                          title: "AED ${itemPrice.toStringAsFixed(2)}",
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SubHeadingWidget(
-                              title: "Delivery Fee | 9.8 km",
-                            ),
-                            SubHeadingWidget(
-                              title: "AED ${deliveryFee.toStringAsFixed(2)}",
-                            ),
-                          ],
-                        ),
-                        SubHeadingWidget(
-                          title: "Enjoy Discounted Delivery!",
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "Delivery Trip",
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isTripAdded = !isTripAdded;
-                            });
-                          },
-                          child: HeadingWidget(
-                              title: isTripAdded ? "Remove Trip" : "Add Trip",
-                              color: Colors.red,
-                              fontSize: 14.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "Platform fee",
-                        ),
-                        SubHeadingWidget(
-                          title: "AED ${platformFee.toStringAsFixed(2)}",
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "GST and Restaurant Charges",
-                        ),
-                        SubHeadingWidget(
-                          title: "AED ${gstFee.toStringAsFixed(2)}",
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        HeadingWidget(title: "To Pay", fontSize: 16.0),
-                        HeadingWidget(title: "AED 27.00", fontSize: 16.0),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16),
+              SizedBox(height: 15.0),
               HeadingWidget(
                 title: "Select your payment Method",
               ),
@@ -512,7 +605,7 @@ class _CartPageState extends State<CartPage> {
                         color: AppColors.red,
                       ),
                       HeadingWidget(
-                        title: "Total: AED 27.00",
+                        title: "Total: ₹ 27.00",
                         color: AppColors.red,
                       ),
                     ],
@@ -558,13 +651,13 @@ class _CartPageState extends State<CartPage> {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 30,
-        height: 30,
+        width: 27,
+        height: 27,
         decoration: BoxDecoration(
           color: Colors.grey.shade200,
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Icon(icon, size: 20, color: Colors.black),
+        child: Icon(icon, size: 15, color: Colors.black),
       ),
     );
   }
