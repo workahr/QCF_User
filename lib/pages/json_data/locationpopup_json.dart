@@ -2,18 +2,16 @@
 
 import 'dart:convert';
 
-Future getMyProfileJsonData() async {
+Future getLocationPopupJsonData() async {
   var result = {
     "status": "SUCCESS",
     "list": [
       {
         "id": 1,
-        "icon": "assets/images/Home_black.png",
+        "icon": "assets/images/home_red.png",
         "type": "Home",
         "address":
             "No 37 Paranjothi Nagar Thalakoidi, velour Nagar Trichy-620005, Landmark-Andavan collage",
-        "contact": "Contact : 1234567890",
-        "currentlocation": "Yes",
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -23,12 +21,10 @@ Future getMyProfileJsonData() async {
       },
       {
         "id": 2,
-        "icon": "assets/images/work_black.png",
+        "icon": "assets/images/work_red.png",
         "type": "Work",
         "address":
             "No 37 Paranjothi Nagar Thalakoidi, velour Nagar Trichy-620005, Landmark-Andavan collage",
-        "contact": "Contact : 1234567890",
-        "currentlocation": "No",
         "status": 1,
         "active": 1,
         "created_by": 101,

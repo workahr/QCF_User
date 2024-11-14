@@ -1,14 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:namfood/pages/models/locationpopup_model.dart';
 import 'package:namfood/widgets/sub_heading_widget.dart';
 import 'package:namfood/widgets/svgiconButtonWidget.dart';
 
 import '../../constants/constants.dart';
+import '../../services/comFuncService.dart';
+import '../../services/nam_food_api_service.dart';
 import '../../widgets/button1_widget.dart';
 import '../../widgets/button_widget.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/heading_widget.dart';
+import '../models/selectlocation_model.dart';
 
-class BottomPopupDemo extends StatelessWidget {
+class BottomPopupDemo extends StatefulWidget {
+  @override
+  State<BottomPopupDemo> createState() => _BottomPopupDemoState();
+}
+
+class _BottomPopupDemoState extends State<BottomPopupDemo> {
+  final NamFoodApiService apiService = NamFoodApiService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    getlocationpopup();
+  }
+
+  //selectocation
+  List<popups> locationpopuppage = [];
+  List<popups> locationpopuppageAll = [];
+  bool isLoading = false;
+
+  Future getlocationpopup() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      var result = await apiService.getlocationpopup();
+      var response = locationpopupmodelFromJson(result);
+      if (response.status.toString() == 'SUCCESS') {
+        setState(() {
+          locationpopuppage = response.list;
+          locationpopuppageAll = locationpopuppage;
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          locationpopuppage = [];
+          locationpopuppageAll = [];
+          isLoading = false;
+        });
+        showInSnackBar(context, response.message.toString());
+      }
+    } catch (e) {
+      setState(() {
+        locationpopuppage = [];
+        locationpopuppageAll = [];
+        isLoading = false;
+      });
+      showInSnackBar(context, 'Error occurred: $e');
+    }
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
@@ -43,7 +100,7 @@ class BottomPopupDemo extends StatelessWidget {
         bottom: MediaQuery.of(context).viewInsets.bottom,
       ),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -69,21 +126,21 @@ class BottomPopupDemo extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 2,
                 itemBuilder: (context, index) {
-                  // final e = myprofilepage[index];
+                  final e = locationpopuppage[index];
                   return Column(
                     children: [
                       Container(
                         // padding: EdgeInsets.symmetric(vertical: 10),
                         child: Padding(
                           padding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
                                 children: [
                                   Image.asset(
-                                    AppAssets.home_red,
+                                    e.icon.toString(),
                                     height: 20,
                                     width: 20,
                                   ),
@@ -91,7 +148,7 @@ class BottomPopupDemo extends StatelessWidget {
                                     width: 8,
                                   ),
                                   HeadingWidget(
-                                    title: "Home",
+                                    title: e.type.toString(),
                                   ),
                                 ],
                               ),
@@ -103,8 +160,7 @@ class BottomPopupDemo extends StatelessWidget {
                                   HeadingWidget(
                                       fontSize: 16.00,
                                       fontWeight: FontWeight.w500,
-                                      title:
-                                          "No 37 Paranjothi Nagar Thalakoidi, velour Nagar Trichy-620005, Landmark-Andavan collage"),
+                                      title: e.address.toString()),
                                 ],
                               ),
                             ],
@@ -138,7 +194,7 @@ class BottomPopupDemo extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 60,
                 ),
                 Text(
                   'Or',

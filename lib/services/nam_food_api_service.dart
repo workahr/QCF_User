@@ -8,6 +8,7 @@ import '../pages/json_data/car_list_json.dart';
 import '../pages/json_data/feedback_page_json.dart';
 import '../pages/json_data/homescreen_json.dart';
 import '../pages/json_data/home_carousel_json.dart';
+import '../pages/json_data/locationpopup_json.dart';
 import '../pages/json_data/myorder_page_json.dart';
 
 import '../pages/json_data/order_preview_json.dart';
@@ -1566,7 +1567,7 @@ class NamFoodApiService {
   }
   // ecomselectlocation
 
-  Future getselectocation() async {
+  Future getselectlocation() async {
     try {
       // Create a list of DriversList with hardcoded data
 
@@ -1584,6 +1585,19 @@ class NamFoodApiService {
       // Create a list of DriversList with hardcoded data
 
       var result = await getMyProfileTitleJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+  // ecomlocationpopup
+
+  Future getlocationpopup() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getLocationPopupJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors

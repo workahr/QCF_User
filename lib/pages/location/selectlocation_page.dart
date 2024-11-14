@@ -21,21 +21,21 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
   void initState() {
     super.initState();
 
-    getselectocation();
+    getselectlocation();
   }
 
-  //AddtoCart
+  //selectocation
   List<locations> locationpage = [];
   List<locations> locationpageAll = [];
   bool isLoading = false;
 
-  Future getselectocation() async {
+  Future getselectlocation() async {
     setState(() {
       isLoading = true;
     });
 
     try {
-      var result = await apiService.getselectocation();
+      var result = await apiService.getselectlocation();
       var response = selectlocationmodelFromJson(result);
       if (response.status.toString() == 'SUCCESS') {
         setState(() {
@@ -98,18 +98,17 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
             child: ListTile(
               leading: Image.asset(
                 AppAssets.mappoint_red,
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
               ),
               title: HeadingWidget(
                 title: 'Locate me',
                 fontWeight: FontWeight.w600,
                 color: AppColors.red,
-                fontSize: 20.00,
               ),
               trailing: Icon(
                 Icons.arrow_forward_ios,
-                size: 24,
+                size: 18,
                 color: AppColors.red,
               ),
             ),
@@ -171,7 +170,6 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                                 HeadingWidget(
                                   title: e.type.toString(),
                                   fontWeight: FontWeight.w600,
-                                  fontSize: 20.00,
                                 ),
                               ],
                             ),
@@ -181,7 +179,6 @@ class _SelectLocationPageState extends State<SelectLocationPage> {
                             Wrap(
                               children: [
                                 HeadingWidget(
-                                    fontSize: 16.00,
                                     fontWeight: FontWeight.w500,
                                     title: e.address.toString()),
                               ],

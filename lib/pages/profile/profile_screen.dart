@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namfood/address/addresspage.dart';
 import 'package:namfood/constants/constants.dart';
 import 'package:namfood/pages/models/myprofile_title_model.dart';
 import 'package:namfood/pages/profile/edit_profilepage.dart';
@@ -224,197 +225,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: AppColors.black,
                               ),
                               trailing: IconButton(
-                                icon: Icon(
-                                  all_expandedIndex == index
-                                      ? Icons.expand_less
-                                      : Icons.expand_more,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    all_expandedIndex =
-                                        all_expandedIndex == index ? -1 : index;
-                                  });
-                                },
-                              ),
+                                  icon: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 16,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Addresspage()));
+                                    });
+                                  }),
                               onTap: () {
                                 setState(() {
-                                  all_expandedIndex =
-                                      all_expandedIndex == index ? -1 : index;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Addresspage()));
                                 });
                               },
                             ),
-                            if (all_expandedIndex == index)
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: 400,
-                                    child: ListView.builder(
-                                      itemCount: myprofilepage.length,
-                                      itemBuilder: (context, index) {
-                                        final e = myprofilepage[index];
-                                        return Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 0),
-                                            child: Column(children: [
-                                              Container(
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 0,
-                                                      horizontal: 20.0),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Image.asset(
-                                                            e.icon.toString(),
-                                                            height: 24,
-                                                            width: 24,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          HeadingWidget(
-                                                            title: e.type
-                                                                .toString(),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 6,
-                                                      ),
-                                                      Wrap(
-                                                        children: [
-                                                          HeadingWidget(
-                                                              fontSize: 16.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              title: e.address
-                                                                  .toString()),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 6,
-                                                      ),
-                                                      HeadingWidget(
-                                                        fontSize: 16.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        title: e.contact
-                                                            .toString(),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 8,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          InkWell(
-                                                            onTap: () {
-                                                              Navigator.push(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (context) =>
-                                                                              EditAddresspage()));
-                                                            },
-                                                            child: Container(
-                                                              height: 35,
-                                                              width: 80,
-                                                              decoration: BoxDecoration(
-                                                                  border: Border.all(
-                                                                      color: AppColors
-                                                                          .red,
-                                                                      width:
-                                                                          1.5),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10)),
-                                                              child: Center(
-                                                                  child: Text(
-                                                                'Edit',
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color:
-                                                                        AppColors
-                                                                            .red,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                              )),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: 8,
-                                                          ),
-                                                          Container(
-                                                            height: 35,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
-                                                                    color:
-                                                                        AppColors
-                                                                            .red,
-                                                                    width: 1.5),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            child: Center(
-                                                                child: Text(
-                                                              'Delete',
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color:
-                                                                      AppColors
-                                                                          .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                      Divider(
-                                                        color: AppColors.grey,
-                                                      ),
-                                                      SizedBox(
-                                                        height: 5,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ]));
-                                      },
-                                    ),
-                                  ),
-
-                                  //outlineButton
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 0, horizontal: 20.0),
-                                    child: OutlineBtnWidget(
-                                      borderColor: AppColors.red,
-                                      height: 50,
-                                      title: 'Add new address',
-                                      titleColor: AppColors.red,
-                                      icon: Icons.add,
-                                      iconColor: AppColors.red,
-                                    ),
-                                  ),
-                                ],
-                              ),
                           ],
                         ),
                       );
@@ -471,7 +303,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       );
                     Divider(
-                      color: AppColors.black,
+                      color: AppColors.grey1,
                     );
                   },
                 ),
