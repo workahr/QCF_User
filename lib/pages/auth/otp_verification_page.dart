@@ -8,6 +8,7 @@ import '../../constants/app_colors.dart';
 import '../../services/comFuncService.dart';
 import '../../widgets/sub_heading_widget.dart';
 import '../HomeScreen/home_screen.dart';
+import '../address/fillyour_addresspage.dart';
 import '../cart/cart_page.dart';
 import '../maincontainer.dart';
 import 'package:pinput/pinput.dart';
@@ -276,13 +277,18 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => MainContainer(),
+                      //   ),
+                      // );
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => MainContainer(),
+                          builder: (context) => FillyourAddresspage(),
                         ),
                       );
-
                       print(
                           'OTP entered: ${_otpControllers.map((c) => c.text).join()}');
                     },

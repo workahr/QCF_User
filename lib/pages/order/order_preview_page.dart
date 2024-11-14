@@ -262,8 +262,8 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                   children: [
                     BillRow(
                         label: "Item total",
-                        value: "${totalDiscountPrice.toString()}0"),
-                    BillRow(label: "Delivery Fee | 9.8 km", value: "30.00"),
+                        value: "₹${totalDiscountPrice.toString()}0"),
+                    BillRow(label: "Delivery Fee | 9.8 km", value: "₹30.00"),
                     Divider(color: Colors.grey[300]),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -276,7 +276,7 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                           ),
                         ),
                         Text(
-                          "2.00",
+                          "₹2.00",
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
                             fontSize: 14,
@@ -295,7 +295,7 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                           ),
                         ),
                         Text(
-                          "35.00",
+                          "₹35.00",
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
                             fontSize: 14,
@@ -306,7 +306,7 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                     Divider(color: Colors.grey[300]),
                     BillRow(
                       label: "Total Amount",
-                      value: "${totalDiscountPrice.toString()}0",
+                      value: "₹${totalDiscountPrice.toString()}0",
                       isTotal: true,
                     ),
                   ],

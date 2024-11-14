@@ -3,10 +3,11 @@ import 'package:namfood/constants/app_assets.dart';
 import 'package:namfood/widgets/heading_widget.dart';
 import 'package:namfood/widgets/outline_btn_widget.dart';
 
-import '../constants/app_colors.dart';
-import '../widgets/button_widget.dart';
-import '../widgets/custom_text_field.dart';
-import '../widgets/sub_heading_widget.dart';
+import '../../constants/app_colors.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/sub_heading_widget.dart';
+import '../maincontainer.dart';
 
 class FillyourAddresspage extends StatefulWidget {
   const FillyourAddresspage({super.key});
@@ -16,7 +17,9 @@ class FillyourAddresspage extends StatefulWidget {
 }
 
 class _FillyourAddresspageState extends State<FillyourAddresspage> {
-  bool _isChecked = false;
+  bool _isChecked1 = false;
+  bool _isChecked2 = false;
+  bool _isChecked3 = false;
   int _selectedIndex = 0; // Track the selected tab
 
   // Method to change the tab
@@ -43,7 +46,7 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
             OutlineBtnWidget(
               borderColor: AppColors.red,
               titleColor: AppColors.red,
-              icon: Icons.my_location,
+              icon: Icons.location_on_outlined,
               iconColor: AppColors.red,
               title: "Locate me automatically",
               height: 50,
@@ -221,11 +224,12 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked1,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked1 = value ?? false;
                               });
                             },
                           ),
@@ -259,11 +263,12 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked2,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked2 = value ?? false;
                               });
                             },
                           ),
@@ -302,11 +307,12 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked3,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked3 = value ?? false;
                               });
                             },
                           ),
@@ -322,13 +328,24 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
               ),
             ),
 
-            ButtonWidget(
-              borderRadius: 10,
-              title: "Submit",
-              width: screenWidth,
-              color: AppColors.red,
-              onTap: () {},
-            ),
+            Center(
+                child: SizedBox(
+                    width: 150,
+                    height: 50,
+                    child: ButtonWidget(
+                      borderRadius: 10,
+                      title: "Submit",
+                      width: screenWidth,
+                      color: AppColors.red,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainContainer(),
+                          ),
+                        );
+                      },
+                    ))),
             SizedBox(height: 20),
             Center(
               child: Row(

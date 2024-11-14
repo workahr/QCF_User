@@ -123,7 +123,7 @@ class AppAssets {
   static const String work_white = 'assets/images/work_white.png';
 
   static const String profileavathar = 'assets/images/profileavathar.png';
-  static const String mappoint_white = 'images/mappoint_white.png';
+  static const String mappoint_white = 'assets/images/mappoint_white.png';
   static const String mappoint_red = 'images/mappoint_red.png';
   static const String feedback = 'assets/images/feedback.png';
   static const String logout = 'assets/images/logout.png';

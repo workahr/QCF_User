@@ -432,7 +432,7 @@ class _CartPageState extends State<CartPage> {
                                     if (selectedOption == 1)
                                       Icon(
                                         Icons.check_circle,
-                                        color: Colors.green,
+                                        color: AppColors.red,
                                         size: 20,
                                       ),
                                   ],
@@ -492,7 +492,7 @@ class _CartPageState extends State<CartPage> {
                                     if (selectedOption == 2)
                                       Icon(
                                         Icons.check_circle,
-                                        color: Colors.black,
+                                        color: AppColors.red,
                                         size: 20,
                                       ),
                                   ],

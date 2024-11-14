@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../constants/app_colors.dart';
-import '../pages/models/myprofile_model.dart';
-import '../services/comFuncService.dart';
-import '../services/nam_food_api_service.dart';
-import '../widgets/heading_widget.dart';
+import '../../constants/app_colors.dart';
+import '../models/myprofile_model.dart';
+import '../../services/comFuncService.dart';
+import '../../services/nam_food_api_service.dart';
+import '../../widgets/heading_widget.dart';
 import 'edit_addresspage.dart';
 
 class Addresspage extends StatefulWidget {

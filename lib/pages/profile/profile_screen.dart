@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namfood/address/addresspage.dart';
+import 'package:namfood/pages/address/addresspage.dart';
 import 'package:namfood/constants/constants.dart';
 import 'package:namfood/pages/models/myprofile_title_model.dart';
 import 'package:namfood/pages/profile/edit_profilepage.dart';
@@ -7,7 +7,7 @@ import 'package:namfood/pages/profile/feedback_page.dart';
 import 'package:namfood/widgets/button_widget.dart';
 import 'package:namfood/widgets/outline_btn_widget.dart';
 
-import '../../address/edit_addresspage.dart';
+import '../address/edit_addresspage.dart';
 import '../../constants/app_assets.dart';
 import '../../services/comFuncService.dart';
 import '../../services/nam_food_api_service.dart';
@@ -269,10 +269,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 size: 16,
                               ),
                               onPressed: () {
-                                setState(() {});
+                                setState(() {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => FeedbackPage(),
+                                    ),
+                                  );
+                                });
                               }),
                           onTap: () {
-                            setState(() {});
+                            setState(() {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => FeedbackPage(),
+                                ),
+                              );
+                            });
                           },
                         ),
                       );
