@@ -43,8 +43,9 @@ class MyOrders {
   String? orderid;
   String? items;
   String? orderstatus;
-  String? OrderPlacedDate;
-  String? OrderConfirmedDate;
+  String? OrderPlacedTime;
+  String? OrderConfirmedTime;
+  String? DeliveryTime;
   String? DeliveryDate;
 
   int status;
@@ -64,8 +65,9 @@ class MyOrders {
     this.orderid,
     this.items,
     this.orderstatus,
-    this.OrderPlacedDate,
-    this.OrderConfirmedDate,
+    this.OrderPlacedTime,
+    this.OrderConfirmedTime,
+    this.DeliveryTime,
     this.DeliveryDate,
     required this.status,
     required this.active,
@@ -85,8 +87,9 @@ class MyOrders {
         orderid: json["orderid"],
         items: json["items"],
         orderstatus: json["orderstatus"],
-        OrderPlacedDate: json["OrderPlacedDate"],
-        OrderConfirmedDate: json["OrderConfirmedDate"],
+        OrderPlacedTime: json["OrderPlacedTime"],
+        OrderConfirmedTime: json["OrderConfirmedTime"],
+        DeliveryTime: json["DeliveryTime"],
         DeliveryDate: json["DeliveryDate"],
         status: json["status"],
         active: json["active"],
@@ -108,11 +111,12 @@ class MyOrders {
         "orderid": orderid,
         "items": items,
         "orderstatus": orderstatus,
+        "DeliveryDate": DeliveryDate,
         "Orderdetails": [
           {
-            "OrderPlacedDate": OrderPlacedDate,
-            "OrderConfirmedDate": OrderConfirmedDate,
-            "DeliveryDate": DeliveryDate,
+            "OrderPlacedTime": OrderPlacedTime,
+            "OrderConfirmedTime": OrderConfirmedTime,
+            "DeliveryTime": DeliveryTime,
           }
         ],
         "status": status,

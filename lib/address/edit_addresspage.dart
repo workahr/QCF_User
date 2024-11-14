@@ -135,6 +135,7 @@ class _EditAddresspageState extends State<EditAddresspage> {
                           color: _selectedIndex == 2
                               ? Colors.white
                               : AppColors.red,
+                          size: 20,
                         ),
                         SizedBox(width: 8),
                         Text('Others'),
@@ -154,17 +155,17 @@ class _EditAddresspageState extends State<EditAddresspage> {
                   Column(
                     children: [
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Contact Number',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Land Mark',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Address',
                         lines: 3,
                         width: screenWidth,
@@ -193,17 +194,17 @@ class _EditAddresspageState extends State<EditAddresspage> {
                   Column(
                     children: [
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Contact Number',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Land Mark',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Address',
                         lines: 3,
                         width: screenWidth,
@@ -232,22 +233,22 @@ class _EditAddresspageState extends State<EditAddresspage> {
                   Column(
                     children: [
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Save As',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Contact Number',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Land Mark',
                         width: screenWidth,
                       ),
                       CustomeTextField(
-                        borderColor: AppColors.grey,
+                        borderColor: AppColors.grey1,
                         labelText: 'Address',
                         lines: 3,
                         width: screenWidth,
@@ -283,6 +284,7 @@ class _EditAddresspageState extends State<EditAddresspage> {
         padding: EdgeInsets.symmetric(
             vertical: screenHeight * 0.04, horizontal: screenWidth * 0.04),
         child: ButtonWidget(
+          height: 50.00,
           borderRadius: 10,
           title: "Submit",
           width: screenWidth,
