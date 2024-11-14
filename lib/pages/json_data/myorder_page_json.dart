@@ -9,11 +9,12 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'On Delivery',
+        "DeliveryDate": "20-Oct-2024",
         "Orderdetails": [
           {
-            "OrderPlacedDate": "January 19th 12:02 AM",
-            "OrderConfirmedDate": "January 19th 12:02 AM",
-            "DeliveryDate": "January 19th 12:02 AM",
+            "OrderPlacedDate": "12:02 AM",
+            "OrderConfirmedDate": "12:02 AM",
+            "DeliveryTime": "12:02 AM",
           }
         ],
         "status": 1,
@@ -33,11 +34,12 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'Completed',
+        "DeliveryDate": "20-Oct-2024",
         "Orderdetails": [
           {
-            "OrderPlacedDate": "January 19th 12:02 AM",
-            "OrderConfirmedDate": "January 19th 12:02 AM",
-            "DeliveryDate": "January 19th 12:02 AM",
+            "OrderPlacedDate": "12:02 AM",
+            "OrderConfirmedDate": "12:02 AM",
+            "DeliveryTime": "12:02 AM",
           }
         ],
         "status": 1,
@@ -57,11 +59,12 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'Completed',
+        "DeliveryDate": "20-Oct-2024",
         "Orderdetails": [
           {
-            "OrderPlacedDate": "January 19th 12:02 AM",
-            "OrderConfirmedDate": "January 19th 12:02 AM",
-            "DeliveryDate": "January 19th 12:02 AM",
+            "OrderPlacedDate": "12:02 AM",
+            "OrderConfirmedDate": "12:02 AM",
+            "DeliveryTime": "12:02 AM",
           }
         ],
         "status": 1,
@@ -81,11 +84,12 @@ Future getMyOrderJsonData() async {
         "orderid": "0012345",
         "items": "12",
         'orderstatus': 'On Delivery',
+        "DeliveryDate": "20-Oct-2024",
         "Orderdetails": [
           {
-            "OrderPlacedDate": "January 19th 12:02 AM",
-            "OrderConfirmedDate": "January 19th 12:02 AM",
-            "DeliveryDate": "January 19th 12:02 AM",
+            "OrderPlacedDate": "12:02 AM",
+            "OrderConfirmedDate": "12:02 AM",
+            "DeliveryTime": "12:02 AM",
           }
         ],
         "status": 1,

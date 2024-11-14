@@ -14,7 +14,9 @@ class EditAddresspage extends StatefulWidget {
 }
 
 class _EditAddresspageState extends State<EditAddresspage> {
-  bool _isChecked = false;
+  bool _isChecked1 = false;
+  bool _isChecked2 = false;
+  bool _isChecked3 = false;
   int _selectedIndex = 0; // Track the selected tab
 
   // Method to change the tab
@@ -171,11 +173,12 @@ class _EditAddresspageState extends State<EditAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked1,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked1 = value ?? false;
                               });
                             },
                           ),
@@ -209,11 +212,12 @@ class _EditAddresspageState extends State<EditAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked2,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked2 = value ?? false;
                               });
                             },
                           ),
@@ -252,11 +256,12 @@ class _EditAddresspageState extends State<EditAddresspage> {
                         children: [
                           Checkbox(
                             side: BorderSide(color: AppColors.grey, width: 2),
-                            activeColor: AppColors.red,
-                            value: _isChecked,
+                            activeColor: AppColors.red, // Color when checked
+                            checkColor: Colors.white, // Color of the tick mark
+                            value: _isChecked3,
                             onChanged: (bool? value) {
                               setState(() {
-                                _isChecked = value ?? false;
+                                _isChecked3 = value ?? false;
                               });
                             },
                           ),
