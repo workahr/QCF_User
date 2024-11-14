@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:namfood/pages/profile/profile_screen.dart';
 import 'controllers/base_controller.dart';
 import 'package:flutter/material.dart';
 import 'constants/app_localizations.dart';

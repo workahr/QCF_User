@@ -314,31 +314,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                             MainAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Container(
-                                                            height: 35,
-                                                            width: 80,
-                                                            decoration: BoxDecoration(
-                                                                border: Border.all(
+                                                          InkWell(
+                                                            onTap: () {
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              EditAddresspage()));
+                                                            },
+                                                            child: Container(
+                                                              height: 35,
+                                                              width: 80,
+                                                              decoration: BoxDecoration(
+                                                                  border: Border.all(
+                                                                      color: AppColors
+                                                                          .red,
+                                                                      width:
+                                                                          1.5),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10)),
+                                                              child: Center(
+                                                                  child: Text(
+                                                                'Edit',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14,
                                                                     color:
                                                                         AppColors
                                                                             .red,
-                                                                    width: 1.5),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            10)),
-                                                            child: Center(
-                                                                child: Text(
-                                                              'Edit',
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  color:
-                                                                      AppColors
-                                                                          .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold),
+                                                              )),
+                                                            ),
                                                           ),
                                                           SizedBox(
                                                             width: 8,
