@@ -260,10 +260,48 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    BillRow(
-                        label: "Item total",
-                        value: "₹${totalDiscountPrice.toString()}0"),
-                    BillRow(label: "Delivery Fee | 9.8 km", value: "₹30.00"),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Item total",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            "₹${totalDiscountPrice.toString()}0",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                            ),
+                          )
+                        ]),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Delivery Fee | 9.8 km",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "₹30.00",
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                            ),
+                          )
+                        ]),
                     Divider(color: Colors.grey[300]),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -283,6 +321,9 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                           ),
                         ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 5,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

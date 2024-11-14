@@ -156,14 +156,14 @@ class _StorePageState extends State<StorePage> {
     if (_overlayEntry == null) {
       _overlayEntry = OverlayEntry(
         builder: (context) => Positioned(
-          bottom: 160.0,
+          bottom: 170.0,
           right: 20.0,
           child: Material(
             color: Colors.transparent,
             child: Container(
               width: 250,
-              padding:
-                  EdgeInsets.only(top: 1.0, left: 8.0, right: 8.0, bottom: 8.0),
+              padding: EdgeInsets.only(
+                  top: 1.0, left: 20.0, right: 25.0, bottom: 10.0),
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(16.0),
@@ -302,16 +302,18 @@ class _StorePageState extends State<StorePage> {
                                             ),
                                             SubHeadingWidget(
                                               title: '252K Rating',
-                                              fontSize: 14.0,
+                                              fontSize: 12.0,
                                               color: AppColors.red,
                                             ),
-                                            DottedLine(
-                                              direction: Axis.horizontal,
-                                              dashColor: AppColors.red,
-                                              lineLength: 80,
-                                              dashLength: 2,
-                                              dashGapLength: 2,
-                                            ),
+                                            SizedBox(
+                                                width: 60,
+                                                child: DottedLine(
+                                                  direction: Axis.horizontal,
+                                                  dashColor: AppColors.red,
+                                                  lineLength: 80,
+                                                  dashLength: 2,
+                                                  dashGapLength: 2,
+                                                )),
                                           ],
                                         ))
                                   ],
@@ -688,12 +690,12 @@ class _StorePageState extends State<StorePage> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          height: 70.0,
+          height: 80.0,
           elevation: 0,
           color: AppColors.light,
           child: SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(1.0),
+              padding: EdgeInsets.all(4.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -704,46 +706,52 @@ class _StorePageState extends State<StorePage> {
                         title:
                             "${selectedItems.length} item${selectedItems.length == 1 ? '' : 's'}",
                         color: AppColors.black,
+                        fontSize: 15.0,
                       ),
                       HeadingWidget(
                         title: "Price: ₹${totalPrice.toStringAsFixed(2)}",
                         color: AppColors.red,
+                        fontSize: 18.0,
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigate to cart
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CartPage(),
-                                ),
-                              );
-                            },
-                            child: SubHeadingWidget(
-                              title: "Go to cart",
-                              color: Colors.white,
-                            ),
+                  SizedBox(
+                      width: 140,
+                      height: 75,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Navigate to cart
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        ),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                          child: Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CartPage(),
+                                    ),
+                                  );
+                                },
+                                child: SubHeadingWidget(
+                                  title: "Go to cart",
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )),
                 ],
               ),
             ),

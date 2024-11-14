@@ -96,6 +96,22 @@ class _CartPageState extends State<CartPage> {
     });
   }
 
+  int _quantity = 1;
+
+  void _increment() {
+    setState(() {
+      _quantity++;
+    });
+  }
+
+  void _decrement() {
+    if (_quantity > 1) {
+      setState(() {
+        _quantity--;
+      });
+    }
+  }
+
   String? selectedValue = 'cash_on_delivery';
 
   @override
@@ -117,37 +133,57 @@ class _CartPageState extends State<CartPage> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.,
-                  children: [
-                    Row(children: [
-                      Image.asset(
-                        AppAssets.cart_home_icon,
-                        height: 25,
-                        width: 25,
-                        color: AppColors.black,
-                      ),
-                      HeadingWidget(
-                        title: " Home",
-                        fontSize: 16.0,
-                      ),
-                    ]),
-                    SubHeadingWidget(
-                      title: " | ",
+                Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                        ),
+                      ],
                     ),
-                    SubHeadingWidget(
-                      title: "No 3 ThillaiNagar, 5 cross, Trichy, 638001",
-                      fontSize: 12.0,
-                      color: Colors.black,
-                    ),
-                    Icon(Icons.expand_more)
-                  ],
+                    child: Row(
+                      children: [
+                        Row(children: [
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Image.asset(
+                            AppAssets.cart_home_icon,
+                            height: 25,
+                            width: 25,
+                            color: AppColors.black,
+                          ),
+                          HeadingWidget(
+                            title: " Home",
+                            fontSize: 16.0,
+                          ),
+                        ]),
+                        SubHeadingWidget(
+                          title: " | ",
+                        ),
+                        SubHeadingWidget(
+                          title: "No 3 ThillaiNagar, 5 cross, Trichy, 638001",
+                          fontSize: 12.0,
+                          color: Colors.black,
+                        ),
+                        Icon(Icons.expand_more)
+                      ],
+                    )),
+                SizedBox(height: 10),
+                HeadingWidget(
+                  title: " Grill Chicken Arabian Restaurant",
+                  fontSize: 18.0,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 if (cartList.isNotEmpty)
                   Container(
                       decoration: BoxDecoration(
@@ -205,7 +241,7 @@ class _CartPageState extends State<CartPage> {
                                                 SizedBox(height: 8.0),
                                                 SubHeadingWidget(
                                                     title:
-                                                        '₹ ${item.discountprice.toString()}',
+                                                        '₹${item.discountprice.toString()}',
                                                     color: AppColors.black),
                                               ],
                                             ),
@@ -215,31 +251,92 @@ class _CartPageState extends State<CartPage> {
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      _buildQuantityButton(
-                                                          Icons.remove, () {
-                                                        if (item.qty! > 1)
-                                                          setState(() =>
-                                                              item.qty! - 1);
-                                                      }),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          GestureDetector(
+                                                            onTap:
+                                                                _decrement, // Call _decrement directly without =>
+                                                            child: Container(
+                                                              height: 25,
+                                                              width: 30,
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          2.0),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Color(
+                                                                        0xFFE23744)),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .remove, // Change this to 'remove' since it's for decrement
+                                                                color:
+                                                                    Colors.red,
+                                                                size: 25,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding: EdgeInsets
                                                                 .symmetric(
-                                                                horizontal:
-                                                                    12.0),
-                                                        child: HeadingWidget(
-                                                            title: item.qty
-                                                                .toString(),
-                                                            fontSize: 16.0,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      ),
-                                                      _buildQuantityButton(
-                                                          Icons.add, () {
-                                                        setState(() =>
-                                                            item.qty! + 1);
-                                                      }),
+                                                                    horizontal:
+                                                                        10.0),
+                                                            child: Text(
+                                                              '$_quantity',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          GestureDetector(
+                                                            onTap:
+                                                                _increment, // Call _increment directly without =>
+                                                            child: Container(
+                                                              height: 25,
+                                                              width: 30,
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          2.0),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Color(
+                                                                        0xFFE23744)),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                              child: Icon(
+                                                                Icons
+                                                                    .add, // Change this to 'add' since it's for increment
+                                                                color:
+                                                                    Colors.red,
+                                                                size: 25,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
                                                     ],
                                                   ),
                                                   SizedBox(
@@ -253,24 +350,6 @@ class _CartPageState extends State<CartPage> {
                                                           FontWeight.bold),
                                                 ])
                                           ])),
-                                  //          Divider(
-                                  //   color: Colors.grey.shade300,
-                                  //  thickness: 1,
-                                  //   ),
-                                  // Padding(
-                                  //     padding: const EdgeInsets.all(10.0),
-                                  //     child: Row(
-                                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //       children: [
-                                  //         SubHeadingWidget(
-                                  //           title: "Add More Items", color: AppColors.black
-                                  //         ),
-                                  //         Icon(
-                                  //           Icons.add_circle_outline_rounded,
-                                  //           color: Colors.grey,
-                                  //         )
-                                  //       ],
-                                  //     ))
                                 ]);
                           })),
                 SizedBox(
@@ -298,7 +377,7 @@ class _CartPageState extends State<CartPage> {
                               title: "Item total", color: AppColors.black),
                           SubHeadingWidget(
                               title:
-                                  "₹ ${totalDiscountPrice.toStringAsFixed(2)}",
+                                  "₹${totalDiscountPrice.toStringAsFixed(2)}",
                               color: AppColors.black),
                         ],
                       ),
@@ -313,13 +392,10 @@ class _CartPageState extends State<CartPage> {
                                   title: "Delivery Fee | 9.8 km",
                                   color: AppColors.black),
                               SubHeadingWidget(
-                                  title: "₹ ${deliveryFee.toStringAsFixed(2)}",
+                                  title: "₹${deliveryFee.toStringAsFixed(2)}",
                                   color: AppColors.black),
                             ],
                           ),
-                          SubHeadingWidget(
-                              title: "Enjoy Discounted Delivery!",
-                              color: AppColors.black),
                         ],
                       ),
                       Divider(
@@ -352,7 +428,7 @@ class _CartPageState extends State<CartPage> {
                           SubHeadingWidget(
                               title: "Platform fee", color: AppColors.black),
                           SubHeadingWidget(
-                              title: "₹ ${platformFee.toStringAsFixed(2)}",
+                              title: "₹${platformFee.toStringAsFixed(2)}",
                               color: AppColors.black),
                         ],
                       ),
@@ -364,7 +440,7 @@ class _CartPageState extends State<CartPage> {
                               title: "GST and Restaurant Charges",
                               color: AppColors.black),
                           SubHeadingWidget(
-                              title: "₹ ${gstFee.toStringAsFixed(2)}",
+                              title: "₹${gstFee.toStringAsFixed(2)}",
                               color: AppColors.black),
                         ],
                       ),
@@ -376,7 +452,7 @@ class _CartPageState extends State<CartPage> {
                         children: [
                           HeadingWidget(title: "To Pay", fontSize: 16.0),
                           HeadingWidget(
-                              title: "₹ ${finalTotal.toStringAsFixed(2)}",
+                              title: "₹${finalTotal.toStringAsFixed(2)}",
                               fontSize: 16.0),
                         ],
                       ),
@@ -439,7 +515,7 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 Row(children: [
                                   HeadingWidget(
-                                    title: "₹ 44",
+                                    title: "₹44",
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -498,7 +574,7 @@ class _CartPageState extends State<CartPage> {
                                   ],
                                 ),
                                 HeadingWidget(
-                                  title: "₹ 60",
+                                  title: "₹60",
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -619,7 +695,7 @@ class _CartPageState extends State<CartPage> {
                         color: AppColors.black,
                       ),
                       HeadingWidget(
-                        title: "₹ 1400.00",
+                        title: "₹1400.00",
                         color: AppColors.red,
                       ),
                     ],

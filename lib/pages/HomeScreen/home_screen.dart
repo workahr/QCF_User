@@ -276,7 +276,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.fromLTRB(21, 23, 21, 15),
                   child: Column(
                     children: [
-                      if (carouselpage.isNotEmpty) // Check if list is not empty
+                      if (carouselpage.isNotEmpty)
                         CarouselSlider.builder(
                           itemCount: carouselpage.length,
                           itemBuilder: (BuildContext context, int itemIndex,
@@ -531,10 +531,10 @@ class _HomeScreenState extends State<HomeScreen> {
         bottomNavigationBar: _isBottomBarVisible
             ? Padding(
                 padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                  bottom: MediaQuery.of(context).size.height / 200,
                 ),
                 child: Container(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius:
@@ -563,7 +563,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: AppColors.grey,
                           )),
                       SizedBox(
-                        height: 240,
+                        height: 190,
                         child: ListView.builder(
                           itemCount: 2,
                           itemBuilder: (context, index) {
@@ -606,7 +606,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             Wrap(
                                               children: [
                                                 HeadingWidget(
-                                                    fontSize: 16.00,
+                                                    fontSize: 14.00,
                                                     fontWeight: FontWeight.w500,
                                                     title:
                                                         e.address.toString()),
@@ -650,34 +650,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Divider(
                               thickness: 1,
                               color: AppColors.grey,
-                              indent: screenWidth * 0.05, // 5% of screen width
-                              endIndent:
-                                  screenWidth * 0.02, // 2% of screen width
+                              indent: screenWidth * 0.01,
+                              endIndent: screenWidth * 0.02,
                             ),
                           ),
                           SizedBox(
-                            height: 60,
+                            height: 30,
                           ),
                           Text(
                             'Or',
                             style: TextStyle(
                                 color: AppColors.black,
-                                fontSize:
-                                    screenWidth * 0.04), // 4% of screen width
+                                fontSize: screenWidth * 0.04),
                           ),
                           Expanded(
                             child: Divider(
                               thickness: 1,
                               color: AppColors.grey,
-                              indent: screenWidth * 0.02, // 2% of screen width
-                              endIndent:
-                                  screenWidth * 0.05, // 5% of screen width
+                              //  indent: screenWidth * 0.01,
+                              endIndent: screenWidth * 0.05,
                             ),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 12,
+                        height: 2,
                       ),
                       SvgIconButtonWidget(
                         title: "Select Automatically",
