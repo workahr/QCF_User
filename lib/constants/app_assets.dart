@@ -112,6 +112,7 @@ class AppAssets {
   static const String profilesettings = 'assets/images/profile_setting.png';
   static const String genderal = 'assets/images/genderal.png';
   static const String address = "assets/images/address.png";
+  static const String address_black = "images/address_black.png";
 
   static const String home_black = 'assets/images/Home_black.png';
   static const String home_white = 'assets/images/home_white.png';
@@ -121,4 +122,8 @@ class AppAssets {
   static const String work_white = 'assets/images/work_white.png';
 
   static const String profileavathar = 'assets/images/profileavathar.png';
+  static const String mappoint_white = 'images/mappoint_white.png';
+  static const String mappoint_red = 'images/mappoint_red.png';
+  static const String feedback = 'assets/images/feedback.png';
+  static const String logout = 'assets/images/logout.png';
 }

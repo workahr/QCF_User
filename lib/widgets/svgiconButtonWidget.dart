@@ -34,10 +34,13 @@ class SvgIconButtonWidget extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
       onPressed: onTap,
-      child:  Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           leadingIcon,
+          SizedBox(
+            width: 8,
+          ),
           Text(
             title,
             style: TextStyle(

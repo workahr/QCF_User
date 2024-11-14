@@ -9,7 +9,13 @@ import '../pages/json_data/feedback_page_json.dart';
 import '../pages/json_data/homescreen_json.dart';
 import '../pages/json_data/home_carousel_json.dart';
 import '../pages/json_data/myorder_page_json.dart';
+
 import '../pages/json_data/order_preview_json.dart';
+
+import '../pages/json_data/myprofile_json.dart';
+import '../pages/json_data/myprofile_title_json.dart';
+import '../pages/json_data/selectlocation_json.dart';
+
 import '../pages/json_data/store_page_json.dart';
 import '../pages/json_data/storerating_json.dart';
 
@@ -1539,6 +1545,45 @@ class NamFoodApiService {
       // Create a list of DriversList with hardcoded data
 
       var result = await getstoreratingPageJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+  // myprofile
+
+  Future getmyprofile() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getMyProfileJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+  // ecomselectlocation
+
+  Future getselectocation() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getSelectLocationJsonData();
+      return jsonEncode(result);
+    } catch (e) {
+      // Handle any errors
+      throw Exception('Failed to retrieve AddtoCart: $e');
+    }
+  }
+  // ecommyProfiletitle
+
+  Future getmyprofiletitle() async {
+    try {
+      // Create a list of DriversList with hardcoded data
+
+      var result = await getMyProfileTitleJsonData();
       return jsonEncode(result);
     } catch (e) {
       // Handle any errors

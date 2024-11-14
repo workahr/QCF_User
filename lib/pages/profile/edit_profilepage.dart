@@ -24,9 +24,35 @@ class _EditProfilepageState extends State<EditProfilepage> {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: screenWidth * 0.04, vertical: screenHeight * 0.02),
+            horizontal: screenWidth * 0.04, vertical: screenHeight * 0.05),
         child: Column(
           children: [
+            Stack(
+              children: [
+                CircleAvatar(
+                  backgroundImage: AssetImage(AppAssets.profileimg),
+                  maxRadius: 50,
+                ),
+                Positioned(
+                  bottom: 0,
+                  left: 65,
+                  child: Container(
+                    height: 30,
+                    width: 30,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: AppColors.red),
+                    child: Icon(
+                      Icons.edit_outlined,
+                      color: AppColors.white,
+                      size: 18,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 12,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: screenHeight * 0),
               child: Column(

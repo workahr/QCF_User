@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:namfood/constants/app_colors.dart';
 import 'package:namfood/constants/constants.dart';
 import 'package:namfood/widgets/custom_text_field.dart';
+import 'package:namfood/widgets/sub_heading_widget.dart';
 
 import '../widgets/button_widget.dart';
 
@@ -13,6 +14,7 @@ class EditAddresspage extends StatefulWidget {
 }
 
 class _EditAddresspageState extends State<EditAddresspage> {
+  bool _isChecked = false;
   int _selectedIndex = 0; // Track the selected tab
 
   // Method to change the tab
@@ -165,6 +167,62 @@ class _EditAddresspageState extends State<EditAddresspage> {
                         lines: 3,
                         width: screenWidth,
                       ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            side: BorderSide(color: AppColors.grey, width: 2),
+                            activeColor: AppColors.red,
+                            value: _isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                _isChecked = value ?? false;
+                              });
+                            },
+                          ),
+                          SubHeadingWidget(
+                            title: 'Set as default address',
+                            color: AppColors.red,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      CustomeTextField(
+                        borderColor: AppColors.grey,
+                        labelText: 'Contact Number',
+                        width: screenWidth,
+                      ),
+                      CustomeTextField(
+                        borderColor: AppColors.grey,
+                        labelText: 'Land Mark',
+                        width: screenWidth,
+                      ),
+                      CustomeTextField(
+                        borderColor: AppColors.grey,
+                        labelText: 'Address',
+                        lines: 3,
+                        width: screenWidth,
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            side: BorderSide(color: AppColors.grey, width: 2),
+                            activeColor: AppColors.red,
+                            value: _isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                _isChecked = value ?? false;
+                              });
+                            },
+                          ),
+                          SubHeadingWidget(
+                            title: 'Set as default address',
+                            color: AppColors.red,
+                          )
+                        ],
+                      )
                     ],
                   ),
                   Column(
@@ -190,26 +248,24 @@ class _EditAddresspageState extends State<EditAddresspage> {
                         lines: 3,
                         width: screenWidth,
                       ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      CustomeTextField(
-                        borderColor: AppColors.grey,
-                        labelText: 'Contact Number',
-                        width: screenWidth,
-                      ),
-                      CustomeTextField(
-                        borderColor: AppColors.grey,
-                        labelText: 'Land Mark',
-                        width: screenWidth,
-                      ),
-                      CustomeTextField(
-                        borderColor: AppColors.grey,
-                        labelText: 'Address',
-                        lines: 3,
-                        width: screenWidth,
-                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            side: BorderSide(color: AppColors.grey, width: 2),
+                            activeColor: AppColors.red,
+                            value: _isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                _isChecked = value ?? false;
+                              });
+                            },
+                          ),
+                          SubHeadingWidget(
+                            title: 'Set as default address',
+                            color: AppColors.red,
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ],
