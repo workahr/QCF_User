@@ -240,33 +240,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         body: Column(children: [
-          // Container(
-          //   width: MediaQuery.of(context).size.width,
-          //   decoration: BoxDecoration(
-          //     color: Color(0xFFE23744),
-          //     borderRadius: BorderRadius.vertical(
-          //       bottom: Radius.circular(20),
-          //     ),
-          //   ),
-          //   child: Padding(
-          //     padding:
-          //         const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
-          //     child: CustomeTextField(
-          //       hint: "Restaurant name or dish",
-          //       // prefixIcon: Icon(Icons.search, color: Color(0xFFE23744)),
-          //       prefixIcon: Image.asset(AppAssets.search_icon),
-          //       boxColor: Colors.white,
-          //       borderColor: Colors.white,
-          //       focusBorderColor: Colors.blue,
-          //       borderRadius: BorderRadius.circular(10),
-          //       contentPadding:
-          //           EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          //       boxRadius: BorderRadius.circular(10),
-          //       hintColor: const Color.fromARGB(255, 94, 93, 93),
-          //       labelColor: const Color.fromARGB(255, 103, 103, 103),
-          //     ),
-          //   ),
-          // ),
           Expanded(
             child: SingleChildScrollView(
                 child: Column(

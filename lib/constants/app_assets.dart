@@ -68,6 +68,7 @@ class AppAssets {
   // QCF IMAGE
 
   static const String pannerimg = 'assets/images/paneer_butter_masala.png';
+  static const String bannerhome = 'assets/images/panner_home_banner.png';
   static const String foodimg = 'assets/images/foodimg.png';
   static const String bannerimg = 'assets/images/bannerpaneer_masala1.png';
   static const String offerimg = 'assets/images/Vector.png';

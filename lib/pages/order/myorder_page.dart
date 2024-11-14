@@ -331,7 +331,7 @@ class _MyorderPageState extends State<MyorderPage>
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              'January 19th 12:02 AM',
+                                              '12:02 AM',
                                               style: TextStyle(
                                                   color: AppColors.n_black),
                                             ),
@@ -383,7 +383,7 @@ class _MyorderPageState extends State<MyorderPage>
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              'January 19th 12:02 AM',
+                                              '12:02 AM',
                                               style: TextStyle(
                                                   color: AppColors.n_black),
                                             ),
@@ -422,7 +422,7 @@ class _MyorderPageState extends State<MyorderPage>
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              'January 19th 12:02 AM',
+                                              '12:02 AM',
                                               style: TextStyle(
                                                   color: AppColors.n_black),
                                             ),
@@ -450,7 +450,7 @@ class _MyorderPageState extends State<MyorderPage>
                                                   fontWeight: FontWeight.bold),
                                             ),
                                             Text(
-                                              'January 19th 12:02 AM',
+                                              '12:02 AM',
                                               style: TextStyle(
                                                   color: AppColors.n_black),
                                             ),

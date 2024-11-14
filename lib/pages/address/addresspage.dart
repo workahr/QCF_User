@@ -66,6 +66,21 @@ class _AddresspageState extends State<Addresspage> {
       appBar: AppBar(
         backgroundColor: AppColors.lightGrey3,
         title: Text('Address'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditAddresspage(),
+                  ),
+                );
+              },
+              icon: Icon(
+                Icons.add,
+                color: AppColors.red,
+              ))
+        ],
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())

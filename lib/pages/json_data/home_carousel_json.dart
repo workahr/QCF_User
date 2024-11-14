@@ -10,7 +10,7 @@ Future getHomeCarouselJsonData() async {
     "list": [
       {
         "id": 1,
-        "image": AppAssets.bannerimg,
+        "image": AppAssets.bannerhome,
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -20,7 +20,7 @@ Future getHomeCarouselJsonData() async {
       },
       {
         "id": 2,
-        "image": AppAssets.bannerimg,
+        "image": AppAssets.bannerhome,
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -30,7 +30,7 @@ Future getHomeCarouselJsonData() async {
       },
       {
         "id": 3,
-        "image": AppAssets.bannerimg,
+        "image": AppAssets.bannerhome,
         "status": 1,
         "active": 1,
         "created_by": 101,
@@ -40,7 +40,7 @@ Future getHomeCarouselJsonData() async {
       },
       {
         "id": 4,
-        "image": AppAssets.bannerimg,
+        "image": AppAssets.bannerhome,
         "status": 1,
         "active": 1,
         "created_by": 101,
