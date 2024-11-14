@@ -108,7 +108,11 @@ class _AddRatingPageState extends State<AddRatingPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.chat_bubble_outline, color: Colors.grey),
+                Image.asset(
+                  AppAssets.feedback_message_icon,
+                  height: 25,
+                  width: 30,
+                ),
                 const SizedBox(width: 8),
                 HeadingWidget(
                   title: 'We need your important comments!',
@@ -152,7 +156,7 @@ class _AddRatingPageState extends State<AddRatingPage> {
             // Description Text Field
             CustomeTextField(
               width: MediaQuery.of(context).size.width - 10.0,
-              hint: 'Description',
+              hint: '  Description',
 
               labelColor: AppColors.primary,
               // borderColor: AppColors.primary2,
@@ -243,20 +247,22 @@ class _AddRatingPageState extends State<AddRatingPage> {
             ),
             const SizedBox(height: 30),
             // Submit Button
-            ElevatedButton(
-              onPressed: () {
-                // Handle submission
-                print('Ratings Submitted');
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                backgroundColor: Colors.red,
-                minimumSize: const Size(double.infinity, 50),
-              ),
-              child: const Text('Submit'),
-            ),
+            SizedBox(
+                width: 130,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle submission
+                    print('Ratings Submitted');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    backgroundColor: AppColors.red,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: const Text('Submit'),
+                )),
           ],
         ),
       ),

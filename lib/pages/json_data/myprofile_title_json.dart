@@ -8,7 +8,7 @@ Future getMyProfileTitleJsonData() async {
     "list": [
       {
         "id": 1,
-        "icon": "images/address_black.png",
+        "icon": "assets/images/address_black.png",
         "title": "Address",
         "status": 1,
         "active": 1,

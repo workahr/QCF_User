@@ -17,9 +17,7 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
   final NamFoodApiService apiService = NamFoodApiService();
-
 
   @override
   void initState() {
@@ -31,7 +29,7 @@ class _CartPageState extends State<CartPage> {
   List<CartList> cartList = [];
   List<CartList> cartListAll = [];
   bool isLoading = false;
-  double totalDiscountPrice = 0.0; 
+  double totalDiscountPrice = 0.0;
 
   Future getOrderPreviewlist() async {
     setState(() {
@@ -69,15 +67,17 @@ class _CartPageState extends State<CartPage> {
   }
 
   void calculateTotalDiscount() {
-  totalDiscountPrice = cartList.fold(
-    0.0, 
-    (sum, item) => sum + (int.parse(item.quantityPrice.toString())  ?? 0.0),
-  );
+    totalDiscountPrice = cartList.fold(
+      0.0,
+      (sum, item) => sum + (int.parse(item.quantityPrice.toString()) ?? 0.0),
+    );
 
-   finalTotal = totalDiscountPrice + deliveryFee + platformFee + gstFee - discount;
-  
-  setState(() {});
-}
+    finalTotal =
+        totalDiscountPrice + deliveryFee + platformFee + gstFee - discount;
+
+    setState(() {});
+  }
+
   int quantity = 3;
   double itemPrice = 15.50;
   double deliveryFee = 44.0;
@@ -85,10 +85,7 @@ class _CartPageState extends State<CartPage> {
   double gstFee = 2.0;
   double discount = 0.0;
   bool isTripAdded = false;
-double finalTotal = 0.0;
-
-  
-
+  double finalTotal = 0.0;
 
   int selectedOption =
       0; // 0 for no selection, 1 for first option, 2 for second option
@@ -99,419 +96,193 @@ double finalTotal = 0.0;
     });
   }
 
-   String? selectedValue = 'cash_on_delivery';
+  String? selectedValue = 'cash_on_delivery';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F6F6),
-      appBar: AppBar(
-        title: HeadingWidget(
-          title: "Cart",
-          fontSize: 20.0,
+        backgroundColor: Color(0xFFF6F6F6),
+        appBar: AppBar(
+          title: HeadingWidget(
+            title: "Cart",
+            fontSize: 20.0,
+          ),
+          backgroundColor: AppColors.lightGrey3,
+          foregroundColor: Colors.black,
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(13.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(children: [
-                    Image.asset(
-                      AppAssets.homeicon,
-                      height: 25,
-                      width: 25,
-                      color: AppColors.red,
-                    ),
-                    HeadingWidget(
-                      title: " Standard Delivery",
-                      fontSize: 16.0,
-                    ),
-                  ]),
-                  SubHeadingWidget(
-                    title: " | ",
-                  ),
-                  SubHeadingWidget(
-                    title: "Lorem ipsum dolor sit...",
-                    fontSize: 12.0,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-
-            if(cartList.isNotEmpty)
-              Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                      ),
-                    ],
-                  ),
-                  child: ListView.separated(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: cartList.length,
-              separatorBuilder: (context, index) => Divider(
-                color: Colors.grey.shade300,
-                thickness: 1,
-              ),
-              itemBuilder: (context, index) {
-                final item = cartList[index];
-                return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                              Image.asset(
-                                item.dishimage.toString(),
-                                height: 60,
-                                width: 60,
-                                fit: BoxFit.fill,
-                              ),
-                            Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                    
-                                      SizedBox(
-                                        width: 150,
-                                        child: HeadingWidget(
-                                          overflow: TextOverflow.visible,
-                                          maxLines: 2,
-                                          title: item.dishname.toString(),
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(height: 8.0),
-                                      SubHeadingWidget(title: '₹ ${item.discountprice.toString()}', color: AppColors.black),
-                                    ],
-                                  ),
-
-
-                                   Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-
-                                        Row(
-                                          children: [
-                                            _buildQuantityButton(Icons.remove,
-                                                () {
-                                              if (item.qty! > 1)
-                                                setState(() => item.qty! - 1);
-                                            }),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 12.0),
-                                              child: HeadingWidget(
-                                                  title: item.qty.toString(),
-                                                  fontSize: 16.0,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            _buildQuantityButton(Icons.add, () {
-                                              setState(() => item.qty!+1);
-                                            }),
-                                          ],
-                                        ),
-                                        SizedBox(height: 8.0,),
-
-                                        HeadingWidget(
-                                        title: '₹ ${item.quantityPrice.toString()}',
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.bold),
-
-                                  ])
-                            ])),
-                //          Divider(
-                //   color: Colors.grey.shade300,
-                //  thickness: 1,
-                //   ),
-                        // Padding(
-                        //     padding: const EdgeInsets.all(10.0),
-                        //     child: Row(
-                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //       children: [
-                        //         SubHeadingWidget(
-                        //           title: "Add More Items", color: AppColors.black
-                        //         ),
-                        //         Icon(
-                        //           Icons.add_circle_outline_rounded,
-                        //           color: Colors.grey,
-                        //         )
-                        //       ],
-                        //     ))
-                      ]);})),
-
-                      
-              SizedBox(
-                height: 10,
-              ),
-            
-             
-              SizedBox(height: 16),
-              HeadingWidget(
-                title: "Bill Details",
-              ),
-              SizedBox(height: 16),
-              Container(
-                padding: EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  //mainAxisAlignment: MainAxisAlignment.,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(title: "Item total", color: AppColors.black),
-                        SubHeadingWidget(
-                          title: "₹ ${totalDiscountPrice.toStringAsFixed(2)}", color: AppColors.black
-                        ),
-                      ],
+                    Row(children: [
+                      Image.asset(
+                        AppAssets.cart_home_icon,
+                        height: 25,
+                        width: 25,
+                        color: AppColors.black,
+                      ),
+                      HeadingWidget(
+                        title: " Home",
+                        fontSize: 16.0,
+                      ),
+                    ]),
+                    SubHeadingWidget(
+                      title: " | ",
                     ),
-                    SizedBox(height: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SubHeadingWidget(
-                              title: "Delivery Fee | 9.8 km", color: AppColors.black
-                            ),
-                            SubHeadingWidget(
-                              title: "₹ ${deliveryFee.toStringAsFixed(2)}", color: AppColors.black
-                            ),
-                          ],
-                        ),
-                        SubHeadingWidget(
-                          title: "Enjoy Discounted Delivery!", color: AppColors.black
-                        ),
-                      ],
+                    SubHeadingWidget(
+                      title: "No 3 ThillaiNagar, 5 cross, Trichy, 638001",
+                      fontSize: 12.0,
+                      color: Colors.black,
                     ),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "Delivery Trip", color: AppColors.black
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isTripAdded = !isTripAdded;
-                            });
-                          },
-                          child: HeadingWidget(
-                              title: isTripAdded ? "Remove Trip" : "Add Trip",
-                              color: Colors.red,
-                              fontSize: 14.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "Platform fee", color: AppColors.black
-                        ),
-                        SubHeadingWidget(
-                          title: "₹ ${platformFee.toStringAsFixed(2)}", color: AppColors.black
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: "GST and Restaurant Charges", color: AppColors.black
-                        ),
-                        SubHeadingWidget(
-                          title: "₹ ${gstFee.toStringAsFixed(2)}", color: AppColors.black
-                        ),
-                      ],
-                    ),
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        HeadingWidget(title: "To Pay", fontSize: 16.0),
-                        HeadingWidget(title: "₹ ${finalTotal.toStringAsFixed(2)}", fontSize: 16.0),
-                      ],
-                    ),
+                    Icon(Icons.expand_more)
                   ],
                 ),
-              ),
-              SizedBox(height: 16),
-
-               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeadingWidget(
-                    title: "Delivery Type",
-                  ),
-                  // SubHeadingWidget(
-                  //   title: "Your Product is Always Fresh",
-                  //   color: Colors.grey,
-                  // ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () => _selectOption(1),
-                        child: Container(
-                          width: 170,
-                          padding: EdgeInsets.all(12.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: selectedOption == 1
-                                  ? Colors.green
-                                  : Colors.grey.shade300,
-                              width: selectedOption == 1 ? 2 : 1,
-                            ),
+                SizedBox(height: 20),
+                if (cartList.isNotEmpty)
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 5,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingWidget(
-                                title: 'Fast delivery',
-                                color: Colors.grey,
-                              ),
-                              Row(
-                                children: [
-                                  HeadingWidget(
-                                    title: "30-35 Mins",
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                  Spacer(),
-                                  if (selectedOption == 1)
-                                    Icon(
-                                      Icons.check_circle,
-                                      color: Colors.green,
-                                      size: 20,
-                                    ),
-                                ],
-                              ),
-                              Row(children: [
-                                HeadingWidget(
-                                  title: "₹ 44",
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              
-                              ]),
-                                SubHeadingWidget(
-                                  title: "Delivery Charges",
-                                ),
-                              SizedBox(height: 8.0),
-                              SubHeadingWidget(
-                                title: "Recommended If You are in a hurry",
-                              ),
-                            ],
-                          ),
-                        ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () => _selectOption(2),
-                        child: Container(
-                          width: 170,
-                          padding: EdgeInsets.all(12.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12.0),
-                            border: Border.all(
-                              color: selectedOption == 2
-                                  ? Colors.green
-                                  : Colors.grey.shade300,
-                              width: selectedOption == 2 ? 2 : 1,
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              HeadingWidget(
-                                title: 'Normal',
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: cartList.length,
+                          separatorBuilder: (context, index) => Divider(
+                                color: Colors.grey.shade300,
+                                thickness: 1,
                               ),
-                              Row(
+                          itemBuilder: (context, index) {
+                            final item = cartList[index];
+                            return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  HeadingWidget(
-                                    title: "40-45 Mins",
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                  ),
-                                  Spacer(),
-                                  if (selectedOption == 2)
-                                    Icon(
-                                      Icons.check_circle,
-                                      color: Colors.green,
-                                      size: 20,
-                                    ),
-                                ],
-                              ),
-                              HeadingWidget(
-                                title: "₹ 60",
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              SubHeadingWidget(
-                                title: "Delivery Charges",
-                              ),
-                              SizedBox(height: 8.0),
-                              SubHeadingWidget(
-                                title: "Recommended If You are in a hurry",
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 15.0),
-              HeadingWidget(
-                title: "Select your payment Method",
-              ),
-              SizedBox(height: 8),
-              Container(
-                padding: EdgeInsets.all(6.0),
+                                  Padding(
+                                      padding: const EdgeInsets.all(15.0),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Image.asset(
+                                              item.dishimage.toString(),
+                                              height: 60,
+                                              width: 60,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: 150,
+                                                  child: HeadingWidget(
+                                                    overflow:
+                                                        TextOverflow.visible,
+                                                    maxLines: 2,
+                                                    title: item.dishname
+                                                        .toString(),
+                                                    fontSize: 16.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 8.0),
+                                                SubHeadingWidget(
+                                                    title:
+                                                        '₹ ${item.discountprice.toString()}',
+                                                    color: AppColors.black),
+                                              ],
+                                            ),
+                                            Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      _buildQuantityButton(
+                                                          Icons.remove, () {
+                                                        if (item.qty! > 1)
+                                                          setState(() =>
+                                                              item.qty! - 1);
+                                                      }),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal:
+                                                                    12.0),
+                                                        child: HeadingWidget(
+                                                            title: item.qty
+                                                                .toString(),
+                                                            fontSize: 16.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      _buildQuantityButton(
+                                                          Icons.add, () {
+                                                        setState(() =>
+                                                            item.qty! + 1);
+                                                      }),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8.0,
+                                                  ),
+                                                  HeadingWidget(
+                                                      title:
+                                                          '₹${item.quantityPrice.toString()}.00',
+                                                      fontSize: 16.0,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ])
+                                          ])),
+                                  //          Divider(
+                                  //   color: Colors.grey.shade300,
+                                  //  thickness: 1,
+                                  //   ),
+                                  // Padding(
+                                  //     padding: const EdgeInsets.all(10.0),
+                                  //     child: Row(
+                                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  //       children: [
+                                  //         SubHeadingWidget(
+                                  //           title: "Add More Items", color: AppColors.black
+                                  //         ),
+                                  //         Icon(
+                                  //           Icons.add_circle_outline_rounded,
+                                  //           color: Colors.grey,
+                                  //         )
+                                  //       ],
+                                  //     ))
+                                ]);
+                          })),
+                SizedBox(
+                  height: 10,
+                ),
+                SizedBox(height: 16),
+                HeadingWidget(
+                  title: "Bill Details",
+                ),
+                SizedBox(height: 16),
+                Container(
+                  padding: EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8.0),
@@ -520,105 +291,347 @@ double finalTotal = 0.0;
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                                        Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                             Image.asset(
-                      AppAssets.moneyIcon,
-                      height: 25,
-                      width: 25,
-            
-                    ),
-                            SizedBox(width: 12),
-                            HeadingWidget(title: 'Cash on Delivery'),
-                          ],
-                        ),
-                        Radio(
-                          value: 'cash_on_delivery',
-                          groupValue: selectedValue,
-                          activeColor: AppColors.red,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue = value;
-                            });
-                          },
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 8.0,),
-
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SubHeadingWidget(
+                              title: "Item total", color: AppColors.black),
+                          SubHeadingWidget(
+                              title:
+                                  "₹ ${totalDiscountPrice.toStringAsFixed(2)}",
+                              color: AppColors.black),
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SubHeadingWidget(
+                                  title: "Delivery Fee | 9.8 km",
+                                  color: AppColors.black),
+                              SubHeadingWidget(
+                                  title: "₹ ${deliveryFee.toStringAsFixed(2)}",
+                                  color: AppColors.black),
+                            ],
+                          ),
+                          SubHeadingWidget(
+                              title: "Enjoy Discounted Delivery!",
+                              color: AppColors.black),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SubHeadingWidget(
+                              title: "Delivery Trip", color: AppColors.black),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isTripAdded = !isTripAdded;
+                              });
+                            },
+                            child: HeadingWidget(
+                                title:
+                                    isTripAdded ? "Remove Trip" : "+ Add Trip",
+                                color: Colors.red,
+                                fontSize: 14.0),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SubHeadingWidget(
+                              title: "Platform fee", color: AppColors.black),
+                          SubHeadingWidget(
+                              title: "₹ ${platformFee.toStringAsFixed(2)}",
+                              color: AppColors.black),
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SubHeadingWidget(
+                              title: "GST and Restaurant Charges",
+                              color: AppColors.black),
+                          SubHeadingWidget(
+                              title: "₹ ${gstFee.toStringAsFixed(2)}",
+                              color: AppColors.black),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          HeadingWidget(title: "To Pay", fontSize: 16.0),
+                          HeadingWidget(
+                              title: "₹ ${finalTotal.toStringAsFixed(2)}",
+                              fontSize: 16.0),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    HeadingWidget(
+                      title: "Delivery Type",
+                    ),
+                    // SubHeadingWidget(
+                    //   title: "Your Product is Always Fresh",
+                    //   color: Colors.grey,
+                    // ),
+                    SizedBox(height: 8),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                             Image.asset(
-                      AppAssets.onlinePaymentIcon,
-                      height: 25,
-                      width: 25,
-            
-                    ),
-                            SizedBox(width: 12),
-                            SubHeadingWidget(title: 'Online Payment'),
-                          ],
+                        GestureDetector(
+                          onTap: () => _selectOption(1),
+                          child: Container(
+                            width: 170,
+                            padding: EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: selectedOption == 1
+                                    ? Color(0xFFE23744)
+                                    : Colors.grey.shade300,
+                                width: selectedOption == 1 ? 2 : 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingWidget(
+                                  title: 'Fast delivery',
+                                  color: Color.fromARGB(255, 95, 95, 95),
+                                ),
+                                Row(
+                                  children: [
+                                    HeadingWidget(
+                                      title: "30-35 Mins",
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    Spacer(),
+                                    if (selectedOption == 1)
+                                      Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                        size: 20,
+                                      ),
+                                  ],
+                                ),
+                                Row(children: [
+                                  HeadingWidget(
+                                    title: "₹ 44",
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ]),
+                                SubHeadingWidget(
+                                  title: "Delivery Charges",
+                                  color: Colors.black,
+                                ),
+                                SizedBox(height: 8.0),
+                                SubHeadingWidget(
+                                  title: "Recommended If You are in a hurry",
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        Radio(
-                          value: 'Online Payment',
-                          groupValue: selectedValue, 
-                          activeColor: AppColors.red,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedValue = value;
-                            });
-                          },
+                        GestureDetector(
+                          onTap: () => _selectOption(2),
+                          child: Container(
+                            width: 170,
+                            padding: EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.0),
+                              border: Border.all(
+                                color: selectedOption == 2
+                                    ? Color(0xFFE23744)
+                                    : Colors.grey.shade300,
+                                width: selectedOption == 2 ? 2 : 1,
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HeadingWidget(
+                                  title: 'Normal',
+                                  color: Color.fromARGB(255, 95, 95, 95),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                Row(
+                                  children: [
+                                    HeadingWidget(
+                                      title: "40-45 Mins",
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                    Spacer(),
+                                    if (selectedOption == 2)
+                                      Icon(
+                                        Icons.check_circle,
+                                        color: Colors.black,
+                                        size: 20,
+                                      ),
+                                  ],
+                                ),
+                                HeadingWidget(
+                                  title: "₹ 60",
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                SubHeadingWidget(
+                                  title: "Delivery Charges",
+                                  color: Colors.black,
+                                ),
+                                SizedBox(height: 8.0),
+                                SubHeadingWidget(
+                                  title: "Recommended If You are in a hurry",
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
-
-                    
-                    ],
-                  )),
-            
-            ],
+                  ],
+                ),
+                SizedBox(height: 15.0),
+                HeadingWidget(
+                  title: "Select your payment Method",
+                ),
+                SizedBox(height: 8),
+                Container(
+                    padding: EdgeInsets.all(6.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(AppAssets.moneyIcon,
+                                    height: 25, width: 25, color: Colors.black),
+                                SizedBox(width: 12),
+                                HeadingWidget(
+                                  title: 'Cash on Delivery',
+                                  fontSize: 15.0,
+                                  color: Colors.black,
+                                ),
+                              ],
+                            ),
+                            Radio(
+                              value: 'cash_on_delivery',
+                              groupValue: selectedValue,
+                              activeColor: AppColors.red,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(
+                                  AppAssets.onlinePaymentIcon,
+                                  height: 25,
+                                  width: 25,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(width: 12),
+                                HeadingWidget(
+                                  title: 'Online Payment',
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                              ],
+                            ),
+                            Radio(
+                              value: 'Online Payment',
+                              groupValue: selectedValue,
+                              activeColor: AppColors.red,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar:   
-      BottomAppBar(height: 100.0,
-  elevation: 0,
-  color: AppColors.light,
-  child: SafeArea(  
-    child: Padding(
-      padding: EdgeInsets.all(8.0),
-      child:Row(
+        bottomNavigationBar: BottomAppBar(
+            height: 80.0,
+            elevation: 0,
+            color: AppColors.light,
+            child: SafeArea(
+                child: Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SubHeadingWidget(
-                        title: "1 item | $quantity Qty",
-                        color: AppColors.red,
+                        title: "Total Amount",
+                        color: AppColors.black,
                       ),
                       HeadingWidget(
-                        title: "Total: ₹ 27.00",
+                        title: "₹ 1400.00",
                         color: AppColors.red,
                       ),
                     ],
                   ),
                   ElevatedButton(
                     onPressed: () {
-                         Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => StorePage(),
                         ),
                       );
-
                     },
                     child: Padding(
                         padding:
@@ -641,23 +654,29 @@ double finalTotal = 0.0;
                   ),
                 ],
               ),
-    )
-  )
-      )
-    );
+            ))));
   }
 
   Widget _buildQuantityButton(IconData icon, VoidCallback onPressed) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 27,
-        height: 27,
+        height: 25,
+        width: 30,
+        padding: EdgeInsets.symmetric(horizontal: 2.0),
         decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: Color(0xFFE23744)),
+          borderRadius: BorderRadius.circular(5),
+          color: Colors.white,
         ),
-        child: Icon(icon, size: 15, color: Colors.black),
+        // Container(
+        //   width: 27,
+        //   height: 27,
+        //   decoration: BoxDecoration(
+        //     color: Colors.white,
+        //     borderRadius: BorderRadius.circular(4),
+        //   ),
+        child: Icon(icon, size: 15, color: Color(0xFFE23744)),
       ),
     );
   }

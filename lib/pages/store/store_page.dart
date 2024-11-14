@@ -629,7 +629,7 @@ class _StorePageState extends State<StorePage> {
                                                     ),
                                                     Row(children: [
                                                       Text(
-                                                        "(₹${e.actualprice.toString()})",
+                                                        "₹${e.actualprice.toString()}",
                                                         //'₹150.0',
                                                         style: TextStyle(
                                                           fontSize: 14,
@@ -644,7 +644,7 @@ class _StorePageState extends State<StorePage> {
                                                       ),
                                                       HeadingWidget(
                                                         title:
-                                                            "(₹${e.discountprice})", // '₹100.0',
+                                                            "₹${e.discountprice}", // '₹100.0',
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         vMargin: 1.0,

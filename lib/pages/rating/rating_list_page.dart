@@ -75,7 +75,6 @@ class _RatingListPageState extends State<RatingListPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Restaurant Info Section
             Text(
               'Grill Chicken Arabian Restaurant',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -83,10 +82,12 @@ class _RatingListPageState extends State<RatingListPage> {
             SizedBox(height: 10),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '4.0',
@@ -97,17 +98,16 @@ class _RatingListPageState extends State<RatingListPage> {
                     ),
                     buildStarRow(4),
                     SizedBox(height: 5),
-                    Text('2,364 Reviews', style: TextStyle(color: Colors.grey)),
+                    Text('2,364 Reviews',
+                        style: TextStyle(color: Colors.black)),
                   ],
                 ),
               ],
             ),
             SizedBox(height: 20),
-            // Rating Distribution Bar
             buildRatingDistribution(),
             Divider(color: Colors.grey[300]),
             SizedBox(height: 20),
-            // Detailed Reviews Section
             Text(
               'Detailed Reviews',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -115,10 +115,8 @@ class _RatingListPageState extends State<RatingListPage> {
             SizedBox(height: 10),
             ListView.builder(
                 itemCount: storeratinglistpage.length,
-                shrinkWrap:
-                    true, // Let the list take only as much space as needed
-                physics:
-                    NeverScrollableScrollPhysics(), // Disable scrolling for ListView
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final e = storeratinglistpage[index];
                   return Padding(
@@ -129,20 +127,35 @@ class _RatingListPageState extends State<RatingListPage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Profile Picture
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                e.image.toString(),
+                            Container(
+                              width: 70,
+                              height: 70,
+                              decoration: BoxDecoration(
+                                color: AppColors.black,
+                                shape: BoxShape.circle,
                               ),
-                              radius: 25,
+                              child: ClipOval(
+                                child: Image.asset(
+                                  "assets/images/profileimg.png",
+                                  fit: BoxFit.cover,
+                                  width: 70,
+                                  height: 70,
+                                ),
+                              ),
                             ),
+
+                            // CircleAvatar(
+                            //   backgroundImage: NetworkImage(
+                            //     e.image.toString(),
+                            //   ),
+                            //   radius: 25,
+                            // ),
                             SizedBox(width: 16),
-                            // Review Content
+
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  // Reviewer Name and Rating
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -181,7 +194,6 @@ class _RatingListPageState extends State<RatingListPage> {
                                     ],
                                   ),
                                   SizedBox(height: 10),
-                                  // Dishes Rating
                                   Row(children: [
                                     Text("Chicken Briyani"),
                                     Row(
@@ -209,7 +221,6 @@ class _RatingListPageState extends State<RatingListPage> {
                                     )
                                   ]),
                                   SizedBox(height: 10),
-                                  // Review Text
                                   Text(
                                     e.description.toString(),
                                     //  review['review'],
@@ -220,9 +231,7 @@ class _RatingListPageState extends State<RatingListPage> {
                             ),
                           ],
                         ),
-                        Divider(
-                            color: Colors.grey[
-                                300]), // Add a divider after each review card
+                        Divider(color: Colors.grey[300]),
                       ],
                     ),
                   );
@@ -233,7 +242,6 @@ class _RatingListPageState extends State<RatingListPage> {
     );
   }
 
-  // Method to build star rating row
   Widget buildStarRow(int rating) {
     return Row(
       children: List.generate(5, (index) {

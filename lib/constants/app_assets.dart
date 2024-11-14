@@ -81,6 +81,7 @@ class AppAssets {
   static const String map_icon = 'assets/images/map_icon.png';
   static const String search_icon = 'assets/images/search_icon.png';
   static const String home_icon = 'assets/images/home_icon1.png';
+  static const String cart_home_icon = 'assets/images/cart_home_icon.png';
   static const String feedback_profile_icon =
       'assets/images/feedback_profice_icon.png';
   static const String feedback_admin_icon =

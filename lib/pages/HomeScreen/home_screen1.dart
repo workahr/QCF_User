@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namfood/constants/app_assets.dart';
+import 'package:namfood/pages/cart/cart_page.dart';
 import 'package:namfood/pages/models/homescreen_model.dart';
 import 'package:namfood/widgets/custom_text_field.dart';
 import 'package:namfood/widgets/heading_widget.dart';
@@ -18,6 +19,8 @@ class HomeScreen1 extends StatefulWidget {
 
 class _HomeScreen1State extends State<HomeScreen1> {
   final NamFoodApiService apiService = NamFoodApiService();
+
+  bool _isBottomBarVisible = true;
 
   @override
   void initState() {
@@ -167,10 +170,10 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           icon: Icon(Icons.notifications_outlined,
                               color: Colors.white),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => HomeScreen1()));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (_) => HomeScreen1()));
                           },
                         ),
                       ],
@@ -438,149 +441,267 @@ class _HomeScreen1State extends State<HomeScreen1> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-          height: 120.0,
-          elevation: 0,
-          color: AppColors.light,
-          child: SafeArea(
-              child: Padding(
-                  padding: const EdgeInsets.all(0.0),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 2),
+      // bottomNavigationBar:
+
+      //     BottomAppBar(
+      //   height: 120.0,
+      //   elevation: 0,
+      //   color: AppColors.light,
+      //   child: SafeArea(
+      //     child: Padding(
+      //       padding: const EdgeInsets.all(8.0),
+      //       child: Row(
+      //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //         children: [
+      //           // Image section
+      //           ClipRRect(
+      //             borderRadius: BorderRadius.circular(8.0),
+      //             child: Image.asset(
+      //               AppAssets.chickenchill,
+      //               height: 70,
+      //               width: 50,
+      //               fit: BoxFit.fill,
+      //             ),
+      //           ),
+      //           SizedBox(width: 5),
+
+      //           // Details Column with text and menu button
+      //           Expanded(
+      //             child: Column(
+      //               crossAxisAlignment: CrossAxisAlignment.start,
+      //               mainAxisAlignment: MainAxisAlignment.center,
+      //               children: [
+      //                 Text(
+      //                   'Grill Chicken\nArabian Resta...',
+      //                   style: TextStyle(
+      //                     fontSize: 16,
+      //                     fontWeight: FontWeight.bold,
+      //                   ),
+      //                   maxLines: 2,
+      //                   overflow: TextOverflow.ellipsis,
+      //                 ),
+      //                 SizedBox(height: 6),
+      //                 Row(
+      //                   children: [
+      //                     Expanded(
+      //                       child: Text(
+      //                         'View all menu',
+      //                         style: TextStyle(
+      //                           fontSize: 14,
+      //                           color: Colors.black,
+      //                           decoration: TextDecoration.underline,
+      //                         ),
+      //                       ),
+      //                     ),
+      //                     Icon(
+      //                       Icons.arrow_forward_ios,
+      //                       color: Colors.black,
+      //                       size: 12,
+      //                     ),
+      //                   ],
+      //                 ),
+      //               ],
+      //             ),
+      //           ),
+
+      //           Column(
+      //             mainAxisAlignment: MainAxisAlignment.center,
+      //             children: [
+      //               Row(
+      //                 children: [
+      //                   Text(
+      //                     '4 items | ₹333.00',
+      //                     style: TextStyle(
+      //                       fontSize: 14,
+      //                       fontWeight: FontWeight.bold,
+      //                     ),
+      //                     overflow: TextOverflow.ellipsis,
+      //                   ),
+      //                 ],
+      //               ),
+      //               SizedBox(height: 10),
+      //               ElevatedButton(
+      //                 style: ElevatedButton.styleFrom(
+      //                   backgroundColor: Color(0xFFE23744),
+      //                   shape: RoundedRectangleBorder(
+      //                     borderRadius: BorderRadius.circular(10),
+      //                   ),
+      //                   padding:
+      //                       EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      //                 ),
+      //                 onPressed: () {
+      //                   Navigator.push(
+      //                     context,
+      //                     MaterialPageRoute(
+      //                       builder: (context) => CartPage(),
+      //                     ),
+      //                   );
+      //                 },
+      //                 child: Text(
+      //                   'View Cart',
+      //                   style: TextStyle(
+      //                     color: Colors.white,
+      //                     fontSize: 16,
+      //                   ),
+      //                 ),
+      //               ),
+      //             ],
+      //           ),
+
+      //           // Close button
+      //           Container(
+      //             width: 30,
+      //             height: 30,
+      //             decoration: BoxDecoration(
+      //               shape: BoxShape.circle,
+      //               color: Color(0xFFE23744),
+      //             ),
+      //             child: Center(
+      //               child: Icon(
+      //                 Icons.close,
+      //                 color: Colors.white,
+      //                 size: 16,
+      //               ),
+      //             ),
+      //           ),
+      //         ],
+      //       ),
+      //     ),
+      //   ),
+      // )
+      bottomNavigationBar: _isBottomBarVisible
+          ? BottomAppBar(
+              height: 120.0,
+              elevation: 0,
+              color: AppColors.light,
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Image section
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          AppAssets.chickenchill,
+                          height: 70,
+                          width: 50,
+                          fit: BoxFit.fill,
                         ),
-                      ],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                      ),
+                      SizedBox(width: 5),
+
+                      // Details Column with text and menu button
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                AppAssets.chickenchill,
-                                height: 70,
-                                width: 50,
-                                fit: BoxFit.fill,
+                            Text(
+                              'Grill Chicken\nArabian Resta...',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                               ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            SizedBox(width: 5),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            SizedBox(height: 6),
+                            Row(
                               children: [
-                                Text(
-                                  'Grill Chicken\nArabian Resta...',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 6),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'View all menu',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: Colors.black,
-                                      size: 12,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  //  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      '4 items',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      ' | ',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      '₹333.00',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 10),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xFFE23744),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 20, vertical: 16),
-                                  ),
-                                  onPressed: () {
-                                    // Add View Cart action here
-                                  },
+                                Expanded(
                                   child: Text(
-                                    'View Cart',
+                                    'View all menu',
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      decoration: TextDecoration.underline,
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 8),
-                              ],
-                            ),
-                            Container(
-                              width: 30,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                // border: Border.all(
-                                color: Color(0xFFE23744),
-                                //   width: 3,
-                                // ),
-                              ),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.close,
-                                  color: Colors.white,
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.black,
                                   size: 12,
                                 ),
-                              ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  )))),
+                      ),
+
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                '4 items | ₹333.00',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFFE23744),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 8),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CartPage(),
+                                ),
+                              );
+                            },
+                            child: Text(
+                              'View Cart',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _isBottomBarVisible = false;
+                            });
+                          },
+                          child: Container(
+                            width: 30,
+                            height: 30,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xFFE23744),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                                size: 16,
+                              ),
+                            ),
+                          )),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          : null,
     );
   }
 }

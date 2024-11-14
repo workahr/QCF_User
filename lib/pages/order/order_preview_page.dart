@@ -9,7 +9,6 @@ import '../../services/nam_food_api_service.dart';
 import '../../widgets/custom_text_field.dart';
 import '../models/order_preview_model.dart';
 
-
 class OrderPreviewPage extends StatefulWidget {
   const OrderPreviewPage({super.key});
 
@@ -18,9 +17,7 @@ class OrderPreviewPage extends StatefulWidget {
 }
 
 class _OrderPreviewPageState extends State<OrderPreviewPage> {
-
   final NamFoodApiService apiService = NamFoodApiService();
-
 
   @override
   void initState() {
@@ -32,7 +29,7 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
   List<OrderPreviewList> orderPreviewList = [];
   List<OrderPreviewList> orderPreviewListAll = [];
   bool isLoading = false;
-  double totalDiscountPrice = 0.0; 
+  double totalDiscountPrice = 0.0;
 
   Future getOrderPreviewlist() async {
     setState(() {
@@ -70,28 +67,30 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
   }
 
   void calculateTotalDiscount() {
-  totalDiscountPrice = orderPreviewList.fold(
-    0.0, 
-    (sum, item) => sum + (int.parse(item.discountprice.toString())  ?? 0.0),
-  );
-  
-  setState(() {});
-}
+    totalDiscountPrice = orderPreviewList.fold(
+      0.0,
+      (sum, item) => sum + (double.parse(item.discountprice.toString()) ?? 0.0),
+    );
+
+    setState(() {
+      totalDiscountPrice = double.parse(totalDiscountPrice.toStringAsFixed(2));
+    });
+  }
 
   final List<Map<String, dynamic>> items = [
     {
       "name": "Chicken Biryani",
       "type": "Non-Veg",
-      "quantity": "Qty-5",
+      "quantity": "5",
       "price": "₹50.00",
-      "image": AppAssets.cartBiriyani // Replace with your image path
+      "image": AppAssets.cartBiriyani
     },
     {
       "name": "Chicken Biryani",
       "type": "Non-Veg",
-      "quantity": "Qty-5",
+      "quantity": "5",
       "price": "₹50.00",
-      "image": AppAssets.cartBiriyani // Replace with your image path
+      "image": AppAssets.cartBiriyani
     },
   ];
 
@@ -101,7 +100,9 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
       appBar: AppBar(
         backgroundColor: AppColors.lightGrey3,
         elevation: 0,
-        title: HeadingWidget(title: "Back",),
+        title: HeadingWidget(
+          title: "Back",
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -109,99 +110,143 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-               CustomeTextField(
-                width: MediaQuery.of(context).size.width - 10.0,
-                hint: 'Find your dish',
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: AppColors.red,
-                ),
-                labelColor: AppColors.primary,
-                // borderColor: AppColors.primary2,
-                focusBorderColor: AppColors.primary,
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                borderColor: AppColors.lightGrey3,
-              ),
-              SizedBox(height: 20),
-
               HeadingWidget(
-            title: 'Grill Chicken Arabian Restaurant',
-            fontSize: 18.0, fontWeight: FontWeight.bold,
-            ),
+                title: 'Grill Chicken Arabian Restaurant',
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
+              //SizedBox(height: 2),
+              Row(
+                children: [
+                  SubHeadingWidget(
+                    title: "Order Id #",
+                    fontSize: 18.0,
+                    color: Colors.black,
+                  ),
+                  SubHeadingWidget(
+                    title: "233352633356",
+                    fontSize: 18.0,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
+              // SizedBox(height: 2),
+              Row(
+                children: [
+                  SubHeadingWidget(
+                    title: "12.30",
+                    fontSize: 14.0,
+                    color: Colors.black,
+                  ),
+                  SubHeadingWidget(
+                    title: " | ",
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  SubHeadingWidget(
+                    title: "3 items",
+                    fontSize: 14.0,
+                    color: Colors.black,
+                  ),
+                  SubHeadingWidget(
+                    title: " | ",
+                    fontSize: 16.0,
+                    color: Colors.black,
+                  ),
+                  SubHeadingWidget(
+                    title: "20-Oct-2024",
+                    fontSize: 14.0,
+                    color: Colors.black,
+                  ),
+                ],
+              ),
               SizedBox(height: 8),
-               HeadingWidget(title: "Order Items",fontSize: 18.0,fontWeight: FontWeight.bold,),
-              SizedBox(height: 8),
-
               //list the product and details
-             ListView.separated(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: orderPreviewList.length,
-      separatorBuilder: (context, index) => Divider(
-        color: Colors.grey.shade300,
-        thickness: 1,
-      ),
-      itemBuilder: (context, index) {
-        final item = orderPreviewList[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                item.dishimage.toString(),
-                width: 70,
-                height: 70,
-                fit: BoxFit.fill,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset(
-                          AppAssets.nonveg_icon,
-                          width: 20,
-                          height: 20,
-                        ),
-                        const SizedBox(width: 5.0),
-                        HeadingWidget(
-                          title: item.type.toString(),
-                          vMargin: 1.0,
-                          fontSize: 13.0,
-                        ),
-                      ],
+              Container(
+                  padding: const EdgeInsets.all(16.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Colors.grey.shade200),
+                  ),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: orderPreviewList.length,
+                    separatorBuilder: (context, index) => Divider(
+                      color: Colors.grey.shade300,
+                      thickness: 1,
                     ),
-                   // const SizedBox(height: 5),
-                    HeadingWidget(
-                      title: item.dishname,
-                    ),
-                    //const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SubHeadingWidget(
-                          title: item.qty,
-                          color: AppColors.black,
+                    itemBuilder: (context, index) {
+                      final item = orderPreviewList[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              item.dishimage.toString(),
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.fill,
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        // const SizedBox(height: 5),
+                                        HeadingWidget(
+                                          title: item.dishname,
+                                        ),
+                                        HeadingWidget(
+                                          title: "₹${item.discountprice}.00",
+                                        )
+                                      ]),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                          // mainAxisAlignment:
+                                          //     MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SubHeadingWidget(
+                                              title: item.qty,
+                                              color: AppColors.black,
+                                            ),
+                                            SubHeadingWidget(
+                                              title: " x ",
+                                              color: AppColors.black,
+                                            ),
+                                            SubHeadingWidget(
+                                              title:
+                                                  "₹${item.discountprice}.00",
+                                              color: AppColors.black,
+                                            )
+                                          ]),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        HeadingWidget(
-                          title: item.discountprice,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    ),
+                      );
+                    },
+                  )),
               SizedBox(height: 20),
-               HeadingWidget(title: "Bill Details",fontSize: 18.0,fontWeight: FontWeight.bold,),
+              HeadingWidget(
+                title: "Bill Details",
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
               SizedBox(height: 5),
 
               //Bill container details
@@ -210,96 +255,119 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: Colors.grey.shade200),
                 ),
-                child:
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BillRow(label: "Item total", value: totalDiscountPrice.toString()),
-            BillRow(label: "Delivery Fee | 9.8 km", value: "0"),
-            Text(
-              "Enjoy Discounted Delivery!",
-              style: TextStyle(color: Colors.black),
-            ),
-           Divider(color: Colors.grey[300]),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                  Text(
-              "Delivery Trip",
-              style: TextStyle(color: Colors.black),
-            ),
-
-            Text(
-              "Add Trip",
-              style: TextStyle(color: Colors.red),
-            ),
-
-              ],
-            ),
-            BillRow(label: "Platform fee", value: "0"),
-            BillRow(label: "GST and Restaurant Charges", value: "0"),
-            Divider(color: Colors.grey[300]),
-            BillRow(
-              label: "To Amount",
-              value: totalDiscountPrice.toString(),
-              isTotal: true,
-            ),
-          ],
-        ),
-    ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BillRow(
+                        label: "Item total",
+                        value: "${totalDiscountPrice.toString()}0"),
+                    BillRow(label: "Delivery Fee | 9.8 km", value: "30.00"),
+                    Divider(color: Colors.grey[300]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Platform fee",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "2.00",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "GST & Restaurant Charges",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                          ),
+                        ),
+                        Text(
+                          "35.00",
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Divider(color: Colors.grey[300]),
+                    BillRow(
+                      label: "Total Amount",
+                      value: "${totalDiscountPrice.toString()}0",
+                      isTotal: true,
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(height: 20),
-              HeadingWidget(title: "Address",fontSize: 18.0,fontWeight: FontWeight.bold,),
+              HeadingWidget(
+                title: "Address",
+                fontSize: 18.0,
+                fontWeight: FontWeight.bold,
+              ),
               SizedBox(height: 5),
 
               //Address container
-             Container(
+              Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey.shade300),
+                  border: Border.all(color: Colors.grey.shade200),
                 ),
                 child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              
-              width: 100.0,
-              padding: EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.red,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0),
-                        color: AppColors.light),
-                    child:    Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100.0,
+                      padding: EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: AppColors.red,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: AppColors.light),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-               Image.asset(
-                      AppAssets.homeicon,
-                      height: 18,
-                      width: 18,
-                      color: AppColors.red,
+                        children: [
+                          Image.asset(
+                            AppAssets.cart_home_icon,
+                            height: 18,
+                            width: 18,
+                            color: AppColors.red,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "Home",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.red),
+                          ),
+                        ],
+                      ),
                     ),
-                SizedBox(width: 8),
-                Text(
-                  "Home",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                    SizedBox(height: 8),
+                    Text(
+                      "No 37 Paranjothi Nagar Thylakoid, velour Nagar\nTrichy-620005",
+                    ),
+                    SizedBox(height: 8),
+                    Text("Contact : 1234567890"),
+                  ],
                 ),
-              ],
-            ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              "No 37 Paranjothi Nagar Thylakoid, velour Nagar\nTrichy-620005",
-            ),
-            SizedBox(height: 8),
-            Text("Contact : 1234567890"),
-          ],
-        ),
-    ),
+              ),
             ],
           ),
         ),
@@ -397,7 +465,6 @@ class _OrderPreviewPageState extends State<OrderPreviewPage> {
 //     );
 //   }
 // }
-
 
 // 3. Bill Details Widget
 // class BillDetails extends StatelessWidget {

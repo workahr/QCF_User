@@ -47,6 +47,9 @@ class OrderPreviewList {
   String? dishname;
   String? rating;
   String? qty;
+  String? platformfee;
+  String? gst;
+  String? deliveryfee;
   String? reviewpersons;
   String? actualprice;
   String? discountprice;
@@ -66,6 +69,9 @@ class OrderPreviewList {
     this.dishname,
     this.rating,
     this.qty,
+    this.platformfee,
+    this.gst,
+    this.deliveryfee,
     this.reviewpersons,
     this.actualprice,
     this.discountprice,
@@ -79,13 +85,17 @@ class OrderPreviewList {
     this.updatedDate,
   });
 
-  factory OrderPreviewList.fromJson(Map<String, dynamic> json) => OrderPreviewList(
+  factory OrderPreviewList.fromJson(Map<String, dynamic> json) =>
+      OrderPreviewList(
         id: json["id"],
         type: json["type"],
         category: json["category"],
         dishname: json["dishname"],
         rating: json["rating"],
         qty: json["qty"],
+        platformfee: json["platformfee"],
+        gst: json["gst"],
+        deliveryfee: json["deliveryfee"],
         reviewpersons: json["reviewpersons"],
         actualprice: json["actualprice"],
         discountprice: json["discountprice"],
@@ -106,6 +116,9 @@ class OrderPreviewList {
         "dishname": dishname,
         "rating": rating,
         "qty": qty,
+        "qty": platformfee,
+        "qty": gst,
+        "qty": deliveryfee,
         "reviewpersons": reviewpersons,
         "actualprice": actualprice,
         "discountprice": discountprice,
