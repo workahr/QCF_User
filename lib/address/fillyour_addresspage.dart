@@ -24,7 +24,7 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
   Widget _buildAddressForm(String type) {
     List<Widget> fields = [
       CustomeTextField(
-        borderColor: AppColors.grey1,
+        borderColor: AppColors.grey,
         labelText: 'Contact Number',
         width: MediaQuery.of(context).size.width,
       ),
