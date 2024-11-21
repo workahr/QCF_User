@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namfood/constants/app_assets.dart';
+import 'package:namfood/pages/HomeScreen/home_screen.dart';
 import 'package:namfood/widgets/heading_widget.dart';
 import 'package:namfood/widgets/outline_btn_widget.dart';
 
@@ -150,7 +151,14 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
               title: "Save",
               width: screenWidth,
               color: AppColors.red,
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              },
             ),
             SizedBox(height: 20),
             Center(
