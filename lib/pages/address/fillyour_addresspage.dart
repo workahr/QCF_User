@@ -467,105 +467,120 @@ class _FillyourAddresspageState extends State<FillyourAddresspage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // Home Tab
-                  Expanded(
-                    flex: 2,
-                    child: ElevatedButton(
-                      onPressed: () => _onTabSelected(0),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            _selectedIndex == 0 ? Colors.white : AppColors.red,
-                        backgroundColor:
-                            _selectedIndex == 0 ? AppColors.red : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: AppColors.red),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            _selectedIndex == 0
-                                ? AppAssets.home_white
-                                : AppAssets.home_red,
-                            width: 18,
-                            height: 18,
+                  SizedBox(
+                      width: 100,
+                      height: 40,
+                      child: Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () => _onTabSelected(0),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: _selectedIndex == 0
+                                ? Colors.white
+                                : AppColors.red,
+                            backgroundColor: _selectedIndex == 0
+                                ? AppColors.red
+                                : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: BorderSide(color: AppColors.red),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 12.0),
                           ),
-                          SizedBox(width: 12),
-                          Text('Home'),
-                        ],
-                      ),
-                    ),
-                  ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                _selectedIndex == 0
+                                    ? AppAssets.home_white
+                                    : AppAssets.home_red,
+                                width: 18,
+                                height: 18,
+                              ),
+                              SizedBox(width: 12),
+                              Text('Home'),
+                            ],
+                          ),
+                        ),
+                      )),
                   SizedBox(width: 10),
 
                   // Work Tab
-                  Expanded(
-                    flex: 2,
-                    child: ElevatedButton(
-                      onPressed: () => _onTabSelected(1),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            _selectedIndex == 1 ? Colors.white : AppColors.red,
-                        backgroundColor:
-                            _selectedIndex == 1 ? AppColors.red : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: AppColors.red),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            _selectedIndex == 1
-                                ? AppAssets.work_white
-                                : AppAssets.work_red,
-                            width: 18,
-                            height: 18,
+                  SizedBox(
+                      width: 100,
+                      height: 40,
+                      child: Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () => _onTabSelected(1),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: _selectedIndex == 1
+                                ? Colors.white
+                                : AppColors.red,
+                            backgroundColor: _selectedIndex == 1
+                                ? AppColors.red
+                                : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: BorderSide(color: AppColors.red),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 12.0),
                           ),
-                          SizedBox(width: 8),
-                          Text('Work'),
-                        ],
-                      ),
-                    ),
-                  ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                _selectedIndex == 1
+                                    ? AppAssets.work_white
+                                    : AppAssets.work_red,
+                                width: 18,
+                                height: 18,
+                              ),
+                              SizedBox(width: 8),
+                              Text('Work'),
+                            ],
+                          ),
+                        ),
+                      )),
                   SizedBox(width: 10),
 
                   // Others Tab
-                  Expanded(
-                    flex: 2,
-                    child: ElevatedButton(
-                      onPressed: () => _onTabSelected(2),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor:
-                            _selectedIndex == 2 ? Colors.white : AppColors.red,
-                        backgroundColor:
-                            _selectedIndex == 2 ? AppColors.red : Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(color: AppColors.red),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 16.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.location_on_outlined,
-                            color: _selectedIndex == 2
+                  SizedBox(
+                      width: 100,
+                      height: 40,
+                      child: Expanded(
+                        flex: 2,
+                        child: ElevatedButton(
+                          onPressed: () => _onTabSelected(2),
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: _selectedIndex == 2
                                 ? Colors.white
                                 : AppColors.red,
-                            size: 20,
+                            backgroundColor: _selectedIndex == 2
+                                ? AppColors.red
+                                : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: BorderSide(color: AppColors.red),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 12.0),
                           ),
-                          SizedBox(width: 8),
-                          Text('Others'),
-                        ],
-                      ),
-                    ),
-                  ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                color: _selectedIndex == 2
+                                    ? Colors.white
+                                    : AppColors.red,
+                                size: 20,
+                              ),
+                              SizedBox(width: 8),
+                              Text('Others'),
+                            ],
+                          ),
+                        ),
+                      )),
                 ],
               ),
               SizedBox(
