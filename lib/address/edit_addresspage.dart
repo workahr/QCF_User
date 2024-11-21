@@ -34,7 +34,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
       children: [
         if (extraFieldLabel != null)
           CustomeTextField(
-            borderColor: AppColors.grey1,
+            borderColor: AppColors.grey,
             labelText: extraFieldLabel,
             width: screenWidth,
           ),
